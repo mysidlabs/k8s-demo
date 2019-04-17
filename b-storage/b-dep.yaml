@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: k8s-demo
+  name: b-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: b-dep
+  template:
+    metadata:
+      labels:
+        app: b-dep
+    spec:
+      volumes:
+      - name: b-pvc-vol
+        persistentVolumeClaim:
+          claimName: b-pvc
+      containers:
+      - name: b-one
+        image: bash
+        command: [ "top" ]
+        volumeMounts:
+          - mountPath: "/var/run/b-pv"
+            name: b-pvc-vol
+...

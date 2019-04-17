@@ -1,0 +1,17 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: d-app
+  labels:
+    app: k8s-demo
+spec:
+  containers:
+    - name: d-app
+      image: staranto/my-toolkit:arm64
+      imagePullPolicy: Always
+      env:
+      - name: TERM
+        value: "xterm"
+      command: [ "top" ]
+...

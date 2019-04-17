@@ -1,0 +1,20 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: b-pod
+  labels:
+    app: k8s-demo
+spec:
+  volumes:
+    - name: b-pvc-vol
+      persistentVolumeClaim:
+       claimName: b-pvc
+  containers:
+    - name: b-bash
+      image: bash
+      command: [ "top" ]
+      volumeMounts:
+        - mountPath: "/var/run/b-pv"
+          name: b-pvc-vol
+...

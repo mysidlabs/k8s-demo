@@ -1,0 +1,45 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: c-pvc
+  labels:
+    app: k8s-demo
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+...
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: k8s-demo
+  name: c-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: c-dep
+  template:
+    metadata:
+      labels:
+        app: c-dep
+    spec:
+      volumes:
+      - name: c-pvc-vol
+        persistentVolumeClaim:
+          claimName: c-pvc
+      containers:
+      - name: c-one
+        image: bash
+        command: [ "top" ]
+        volumeMounts:
+          - mountPath: "/var/run/c-pv"
+            name: c-pvc-vol
+...

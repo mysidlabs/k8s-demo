@@ -1,0 +1,20 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: a-cronjob
+  labels:
+    app: k8s-demo
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: a-one 
+            image: bash
+            command: [ "bash" ]
+            args: [ "-c",  "for x in {1..10}; do uptime; sleep 5; done"]
+          restartPolicy: Never
+...

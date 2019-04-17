@@ -1,0 +1,13 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: a-pod
+  labels:
+    app: k8s-demo
+spec:
+  containers:
+    - name: a-one
+      image: bash
+      command: [ "watch", "uptime" ]
+...

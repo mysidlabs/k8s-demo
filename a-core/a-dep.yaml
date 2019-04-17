@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: k8s-demo
+  name: a-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: a-dep
+  template:
+    metadata:
+      labels:
+        app: a-dep
+    spec:
+      containers:
+      - name: a-one
+        image: bash
+        command: [ "top" ]
+...
