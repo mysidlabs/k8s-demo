@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e-dep-web
+spec:
+  selector:
+    matchLabels:
+      taranto.dev/app: k8s-demo-web
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        taranto.dev/app: k8s-demo-web
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: taranto.dev/app
+                operator: In
+                values:
+                - k8s-demo-web
+            topologyKey: "kubernetes.io/hostname"
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: taranto.dev/app
+                operator: In
+                values:
+                - k8s-demo-cache
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: e-web
+        image: nginx
