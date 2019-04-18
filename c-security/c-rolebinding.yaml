@@ -1,0 +1,14 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: c-rolebinding-get
+  namespace: k8s-demo-lock
+subjects:
+- kind: User
+  name: winston
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: c-role-get
+  apiGroup: rbac.authorization.k8s.io
+

@@ -14,17 +14,4 @@ spec:
       - name: http
         containerPort: 80
 ...
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: d-web-svc
-spec:
-  selector:
-    tier: web
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: http
-  type: LoadBalancer
-...
+
