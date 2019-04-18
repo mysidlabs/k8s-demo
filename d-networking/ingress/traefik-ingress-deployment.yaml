@@ -11,16 +11,16 @@ metadata:
   name: traefik-ingress-controller
   namespace: kube-system
   labels:
-    k8s-app: traefik-ingress-lb
+    k8s-taranto.dev/app: traefik-ingress-lb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: traefik-ingress-lb
+      k8s-taranto.dev/app: traefik-ingress-lb
   template:
     metadata:
       labels:
-        k8s-app: traefik-ingress-lb
+        k8s-taranto.dev/app: traefik-ingress-lb
         name: traefik-ingress-lb
     spec:
       serviceAccountName: traefik-ingress-controller
@@ -45,7 +45,7 @@ metadata:
   namespace: kube-system
 spec:
   selector:
-    k8s-app: traefik-ingress-lb
+    k8s-taranto.dev/app: traefik-ingress-lb
   ports:
     - protocol: TCP
       port: 80

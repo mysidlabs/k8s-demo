@@ -4,17 +4,17 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: k8s-demo
+    taranto.dev/app: k8s-demo
   name: a-dep
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: a-dep
+      taranto.dev/app: a-dep
   template:
     metadata:
       labels:
-        app: a-dep
+        taranto.dev/app: a-dep
     spec:
       containers:
       - name: a-one

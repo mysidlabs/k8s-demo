@@ -4,15 +4,15 @@ kind: DaemonSet
 metadata:
   name: a-ds
   labels:
-    app: k8s-demo
+    taranto.dev/app: k8s-demo
 spec:
   selector:
     matchLabels:
-      app: k8s-demo
+      taranto.dev/app: k8s-demo
   template:
     metadata:
       labels:
-        app: k8s-demo
+        taranto.dev/app: k8s-demo
     spec:
       containers:
       - name: a-one

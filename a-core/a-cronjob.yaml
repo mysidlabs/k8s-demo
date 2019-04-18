@@ -4,7 +4,7 @@ kind: CronJob
 metadata:
   name: a-cronjob
   labels:
-    app: k8s-demo
+    taranto.dev/app: k8s-demo
 spec:
   schedule: "*/5 * * * *"
   jobTemplate:

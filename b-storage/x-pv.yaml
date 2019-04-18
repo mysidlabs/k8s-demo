@@ -4,7 +4,7 @@ apiVersion: v1
 metadata:
   name: x-pv
   labels:
-    app: k8s-demo
+    taranto.dev/app: k8s-demo
 spec:
   storageClassName: manual
   capacity:
