@@ -2,22 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     taranto.dev/app: k8s-demo
-  name: a-dep
+  name: f-dep
 spec:
   replicas: 1
   selector:
     matchLabels:
-      taranto.dev/app: a-dep
+      taranto.dev/app: f-dep
   template:
     metadata:
       labels:
-        taranto.dev/app: a-dep
+        taranto.dev/app: f-dep
     spec:
       containers:
-      - name: a-limits
+      - name: f-limits
         image: staranto/my-sysbench
         command: [ "sh" ]
         args: [ "-c", "sleep 10000" ]

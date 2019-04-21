@@ -2,13 +2,18 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: a-pod
+  name: f-pod
   labels:
     taranto.dev/app: k8s-demo
 spec:
   terminationGracePeriodSeconds: 1
   containers:
-    - name: a-one
+    - name: f-one
       image: bash
       command: [ "watch", "uptime" ]
+      resources:
+        requests:
+          memory: "64Mi"
+          cpu: "100m"
+  priorityClassName: f-pc-low
 ...

@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    taranto.dev/app: k8s-demo
+  name: f-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      taranto.dev/app: f-dep
+  template:
+    metadata:
+      labels:
+        taranto.dev/app: f-dep
+    spec:
+      containers:
+      - name: f-one
+        image: bash
+        command: [ "top" ]
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+      priorityClassName: f-pc-medium
+...
