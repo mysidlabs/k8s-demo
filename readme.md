@@ -3,10 +3,14 @@
 ## Goal
 Provide a basic foundation of the concepts in containers in general and Kubernetes specifically.  The agenda is structured so that we can stop as time or knowledge dictates.  Each group of demo exercises builds on the previous.
 
+## Prerequisites
+
+A 'fast', reliable and open internet connection.  **In particular, jump.taranto.dev 1194/udp**.
+
 ## Prep
 The following topics should be covered before demoing these examples --
 
-1. Be clear that this is a Linux-centric demo.  Windows will not be covered, but more of the core concepts are the same.  The tooling concepts are largely the same too, with syntactical differences. 
+1. Be clear that this is a Linux-centric demo.  Windows will not be covered, but most of the core concepts are the same.  The tooling concepts are largely the same too, with syntactical differences. 
 1. Basic introduction of containers.  Comparison to VM's.
 1. Define Terms
     1. Image
