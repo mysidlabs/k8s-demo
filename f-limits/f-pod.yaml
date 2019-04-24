@@ -9,11 +9,15 @@ spec:
   terminationGracePeriodSeconds: 1
   containers:
     - name: f-one
-      image: bash
+      image: staranto/my-toolkit:arm64
+      imagePullPolicy: Always
       command: [ "watch", "uptime" ]
       resources:
+        limits:
+          memory: "256Mi"
+          cpu: "2000m"
         requests:
-          memory: "64Mi"
-          cpu: "100m"
-  priorityClassName: f-pc-low
+          memory: "128Mi"
+          cpu: "1000m"
+#  priorityClassName: f-pc-low
 ...

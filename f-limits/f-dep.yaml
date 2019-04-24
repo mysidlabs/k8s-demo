@@ -18,11 +18,18 @@ spec:
     spec:
       containers:
       - name: f-one
-        image: bash
-        command: [ "top" ]
+        image: staranto/my-toolkit:arm64
+        imagePullPolicy: Always
+        command: [ "watch", "uptime" ]
+        #command: [ "sh", "-c", "stress-ng --brk 2 --stack 2 --timeout 180s" ]
         resources:
+          limits: 
+            memory: "512Mi"
+            cpu: "500m"
           requests:
             memory: "128Mi"
-            cpu: "500m"
-      priorityClassName: f-pc-medium
+            cpu: "250m"
+      nodeSelector:
+        kubernetes.io/hostname: "rock1"
+#      priorityClassName: f-pc-medium
 ...

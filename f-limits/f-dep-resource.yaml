@@ -18,8 +18,7 @@ spec:
       containers:
       - name: f-limits
         image: staranto/my-sysbench
-        command: [ "sh" ]
-        args: [ "-c", "sleep 10000" ]
+        command: [ "watch", "uptime" ]
         resources:
           limits:
             memory: "512Mi"
