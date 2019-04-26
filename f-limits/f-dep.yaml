@@ -30,6 +30,8 @@ spec:
             memory: "128Mi"
             cpu: "250m"
       nodeSelector:
-        kubernetes.io/hostname: "rock1"
-#      priorityClassName: f-pc-medium
+        kubernetes.io/role: node
+
+#       kubernetes.io/hostname: "rock1"
+#     priorityClassName: f-pc-medium
 ...

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: g-configmap-file
+  labels:
+    taranto.dev/app: k8s-demo
+data:
+  demo.properties: |
+    son=Zach
+    daughter=Katy
