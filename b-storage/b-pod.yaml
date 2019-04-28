@@ -15,6 +15,6 @@ spec:
       image: bash
       command: [ "top" ]
       volumeMounts:
-        - mountPath: "/var/run/b-pv"
+        - mountPath: "/var/run/b-pvc"
           name: b-pvc-vol
 ...

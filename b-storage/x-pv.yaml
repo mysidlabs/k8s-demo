@@ -7,12 +7,13 @@ metadata:
     taranto.dev/app: k8s-demo
 spec:
   storageClassName: manual
+  persistentVolumeReclaimPolicy: Delete
   capacity:
-    storage: 4Gi
+    storage: 2Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/x-pv"
+    path: "/tmp/x-pv"
   nodeAffinity:
     required:
       nodeSelectorTerms:

@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         taranto.dev/app: k8s-demo-web
+        taranto/dev/section: e-targeted-deploy
     spec:
       affinity:
         podAntiAffinity:
