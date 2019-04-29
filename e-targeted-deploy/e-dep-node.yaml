@@ -10,11 +10,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      taranto.dev/app: e-dep
+      taranto.dev/example: e-dep-node
   template:
     metadata:
       labels:
-        taranto.dev/app: e-dep
+        taranto.dev/example: e-dep-node
     spec:
       nodeSelector:
         kubernetes.io/hostname: rock2

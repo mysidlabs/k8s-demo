@@ -2,26 +2,29 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: e-dep-cache
+  labels: 
+    taranto.dev/app: k8s-demo
+    taranto.dev/section: e-targeted-deploy
 spec:
   selector:
     matchLabels:
-      taranto.dev/app: k8s-demo-cache
+      taranto.dev/example: e-dep-antiaffinity
   replicas: 3
   template:
     metadata:
       labels:
-        taranto.dev/app: k8s-demo-cache
-        taranto.dev/section: e-targeted-deploy
+        taranto.dev/example: e-dep-antiaffinity
+        taranto.dev/tier: cache
     spec:
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-              - key: taranto.dev/app
+              - key: taranto.dev/tier
                 operator: In
                 values:
-                - k8s-demo-cache
+                - cache
             topologyKey: "kubernetes.io/hostname"
       containers:
       - name: e-redis
