@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    taranto.dev/app: k8s-demo
+    taranto.dev/section: d-networking
+    taranto.dev/tier: web
+  name: d-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      taranto.dev/example: d-web
+  template:
+    metadata:
+      labels:
+        taranto.dev/tier: web
+        taranto.dev/example: d-web
+    spec:
+      containers:
+      - name: web
+        image: nginx
+        ports:
+        - name: http
+          containerPort: 80
+...
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: d-web-svc
+  labels:
+    taranto.dev/app: k8s-demo
+    taranto.dev/section: d-networking
+spec:
+  selector:
+    taranto.dev/tier: web
+  ports:
+  - protocol: TCP
+    port: 81
+    targetPort: http
+  type: LoadBalancer
+...
+
