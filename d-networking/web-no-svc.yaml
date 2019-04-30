@@ -1,17 +1,27 @@
 ---
-kind: Pod
-apiVersion: v1
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: d-web
+  creationTimestamp: null
   labels:
     taranto.dev/app: k8s-demo
-    tier: web
+    taranto.dev/section: d-networking
+    taranto.dev/tier: web
+  name: d-web
 spec:
-  containers:
-    - name: web
-      image: nginx
-      ports:
-      - name: http
-        containerPort: 80
+  replicas: 1
+  selector:
+    matchLabels:
+      taranto.dev/example: d-web
+  template:
+    metadata:
+      labels:
+        taranto.dev/example: d-web
+    spec:
+      containers:
+      - name: web
+        image: nginx
+        ports:
+        - name: http
+          containerPort: 80
 ...
-

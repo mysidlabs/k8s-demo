@@ -18,7 +18,7 @@ spec:
     spec:
       nodeSelector:
         taranto.dev/disk: fast
-        taranto.dev/mem: large
+        taranto.dev/mem: tiny
       containers:
       - name: e-one
         image: bash
