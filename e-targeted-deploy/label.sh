@@ -1,23 +1,21 @@
 #!/usr/bin/env bash
 
-if [ "$1" == "clean" ]; then
+cpu=(  0   "high"    "low"      "high"     "low"  )
+mem=(  0   "large"   "large"    "small"    "tiny" )
+disk=( 0   "fast"    "fast"     "slow"     "slow" )
+
+for x in cpu mem disk; do
+  a=$x[@]
+  v=(${!a})
   for i in {1..4}; do
-    for l in cpu disk mem; do
-      kubectl label nodes rock${i} "taranto.dev/${l}-"
-    done
+    if [ "$1" == "clean" ]; then
+      kubectl label nodes rock${i} "taranto.dev/${x}-"
+    else
+      kubectl label nodes rock${i} "taranto.dev/${x}=${v[i]}"
+    fi
   done
-else 
-  for i in 1 3; do
-    kubectl label nodes rock${i} taranto.dev/cpu=high
-  done
-
-  for i in 1 4; do
-    kubectl label nodes rock${i} taranto.dev/disk=ssd
-  done
-  kubectl label nodes rock3 taranto.dev/disk=slow
+done
 
 
-  for i in 2 3; do
-    kubectl label nodes rock${i} taranto.dev/mem=64
-  done
-fi
+
+     # kubectl label nodes rock${i} "taranto.dev/${l}-"

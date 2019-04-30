@@ -17,7 +17,7 @@ spec:
         taranto.dev/example: e-dep
     spec:
       nodeSelector:
-        taranto.dev/disk: ssd
+        taranto.dev/cpu: high
       containers:
       - name: e-one
         image: bash

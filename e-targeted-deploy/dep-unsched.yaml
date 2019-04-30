@@ -10,15 +10,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      taranto.dev/app: e-dep
+      taranto.dev/example: e-dep-unsched
   template:
     metadata:
       labels:
-        taranto.dev/app: e-dep
+        taranto.dev/example: e-dep-unsched
     spec:
       nodeSelector:
-        taranto.dev/disk: ssd
-        taranto.dev/cpu: low
+        taranto.dev/disk: fast
+        taranto.dev/mem: large
       containers:
       - name: e-one
         image: bash
