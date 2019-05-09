@@ -1,22 +1,31 @@
 ---
+# from test-branch
 apiVersion: v1
 kind: Pod
 metadata:
   name: g-pod-file
   labels:
     taranto.dev/app: k8s-demo
+    taranto.dev/section: g-config
 spec:
   containers:
   - name: g-file-one 
     image: bash
     command: [ "watch", "uptime" ]
     volumeMounts: 
-    - name: vol-config
-      mountPath: /etc/config
+
+    - name: vol-file
+      mountPath: /etc/config-file
+    - name: vol-literal
+      mountPath: /etc/config-literal
   volumes:
-  - name: vol-config
+  - name: vol-file
     configMap:
       name: g-configmap-file
+  - name: vol-literal
+    configMap:
+      name: g-configmap-literal
   restartPolicy: Never
+  terminationGracePeriodSeconds: 0
 ...
 
