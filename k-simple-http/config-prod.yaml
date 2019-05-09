@@ -1,0 +1,9 @@
+---
+# PRODUCTION
+apiVersion: v1
+kind: ConfigMap
+data:
+  COLOR: green
+metadata:
+  name: config-env
+...

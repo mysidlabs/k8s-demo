@@ -25,12 +25,18 @@ spec:
         command:
         - /tmp/pounder
         - http://counter:8181
-        - blue
+        - yellow
         env:
+        - name: COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: config-env
+              key: COLOR
+              optional: true
         - name: PROBE
           value: "1"
         - name: FAILCEILING
-          value: "64000"
+          value: "10240"
         - name: NODE
           valueFrom:
             fieldRef:

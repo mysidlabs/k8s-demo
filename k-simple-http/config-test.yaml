@@ -1,0 +1,9 @@
+---
+# Test
+apiVersion: v1
+kind: ConfigMap
+data:
+  COLOR: red
+metadata:
+  name: config-env
+...
