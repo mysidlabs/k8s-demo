@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-if [ "$1" == "clean" ]; then
-  for i in {1..4}; do
-    kubectl taint nodes rock${i} taranto.dev/month-end-
-  done
-else 
-  for i in {1..4}; do
-    kubectl taint nodes rock${i} taranto.dev/month-end=true:NoSchedule
-  done
-fi
+nodes=$(kubectl get nodes --output name --selector kubernetes.io/role=node)
+
+for node in ${nodes}; do
+  if [ "$1" == "clean" ]; then
+    kubectl taint node ${node} taranto.dev/month-end-
+  else
+    kubectl taint node ${node} taranto.dev/month-end=true:NoSchedule
+  fi
+done
+

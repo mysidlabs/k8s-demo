@@ -4,15 +4,20 @@ cpu=(  0   "high"    "low"      "high"     "low"  )
 mem=(  0   "large"   "large"    "small"    "tiny" )
 disk=( 0   "fast"    "fast"     "slow"     "slow" )
 
+nodes=$(kubectl get nodes --output name --selector kubernetes.io/role=node)
+
 for x in cpu mem disk; do
   a=$x[@]
   v=(${!a})
-  for i in {1..4}; do
+  i=1
+  for node in ${nodes}; do
     if [ "$1" == "clean" ]; then
-      kubectl label nodes rock${i} "taranto.dev/${x}-"
+      kubectl label ${node} "taranto.dev/${x}-"
     else
-      kubectl label nodes rock${i} "taranto.dev/${x}=${v[i]}"
+      echo ${node}
+      kubectl label ${node} "taranto.dev/${x}=${v[i]}"
     fi
+    ((i++))
   done
 done
 
