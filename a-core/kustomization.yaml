@@ -2,7 +2,7 @@
 commonLabels:
   builtby: kustomize
 resources:
-  - a-job.yaml
+  - job.yaml
 patches:
-  - a-job-patch.yaml
+  - job-patch.yaml
 ...

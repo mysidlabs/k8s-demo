@@ -5,16 +5,19 @@ metadata:
   name: a-rs
   labels:
     taranto.dev/app: k8s-demo
+    taranto.dev/section: a-core
+    taranto.dev/example: a-replicaset
 spec:
   replicas: 3
   selector:
     matchLabels:
-      taranto.dev/app: k8s-demo
+      taranto.dev/example: a-replicaset
   template:
     metadata:
       labels:
-        taranto.dev/app: k8s-demo
+        taranto.dev/example: a-replicaset
     spec:
+      terminationGracePeriodSeconds: 0
       containers:
       - name: a-one
         image: bash

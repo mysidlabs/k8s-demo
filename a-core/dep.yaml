@@ -2,20 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
+  name: a-dep
   labels:
     taranto.dev/app: k8s-demo
-  name: a-dep
+    taranto.dev/section: a-core
+    taranto.dev/example: a-dep
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      taranto.dev/app: a-dep
+      taranto.dev/example: a-dep
   template:
     metadata:
       labels:
-        taranto.dev/app: a-dep
+        taranto.dev/example: a-dep
     spec:
+      terminationGracePeriodSeconds: 0
       containers:
       - name: a-one
         image: bash
