@@ -21,21 +21,6 @@ items:
 - apiVersion: v1
   kind: ResourceQuota
   metadata:
-    name: f-rq-medium
-  spec:
-    hard:
-      cpu: "1000m"
-      memory: "512Mi"
-      pods: "5"
-    scopeSelector:
-      matchExpressions:
-      - operator : In
-        scopeName: PriorityClass
-        values: ["f-pc-medium"]
-
-- apiVersion: v1
-  kind: ResourceQuota
-  metadata:
     name: f-rq-low
   spec:
     hard:

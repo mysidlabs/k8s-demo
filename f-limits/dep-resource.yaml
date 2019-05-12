@@ -15,12 +15,17 @@ spec:
       labels:
         taranto.dev/app: f-dep
     spec:
+      terminationGracePeriodSeconds: 0
       containers:
       - name: f-limits
-        image: staranto/my-sysbench
+        image: bash
         command: [ "watch", "uptime" ]
         resources:
           limits:
             memory: "512Mi"
             cpu: "1500m"
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+      priorityClassName: f-pc-low 
 ...

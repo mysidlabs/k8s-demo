@@ -19,5 +19,5 @@ spec:
         requests:
           memory: "128Mi"
           cpu: "1000m"
-#  priorityClassName: f-pc-low
+  priorityClassName: f-pc-medium
 ...
