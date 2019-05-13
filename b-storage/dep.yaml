@@ -2,7 +2,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     taranto.dev/app: k8s-demo
   name: b-dep
@@ -23,7 +22,8 @@ spec:
       containers:
       - name: b-one
         image: bash
-        command: [ "top" ]
+        command: ["bash"]
+        args: ["-c", "while true; do echo `date` >> /var/run/b-pvc/`hostname`.log; sleep 5; done"]
         volumeMounts:
           - mountPath: "/var/run/b-pvc"
             name: b-pvc-vol
