@@ -18,6 +18,7 @@ spec:
       annotations:
         diamanti.com/endpoint0: '{"network":"default","perfTier":"low"}'
     spec:
+      terminationGracePeriodSeconds: 0
       containers:
       - name: pounder
         image: staranto/simple-http-pounder:latest
