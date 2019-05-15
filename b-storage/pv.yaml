@@ -23,5 +23,6 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - rock3
+#         - rock3
+          - k3d-k3s-default-worker-1
 ...
