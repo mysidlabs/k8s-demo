@@ -13,6 +13,7 @@ spec:
   containers:
     - name: b-bash
       image: bash
+      imagePullPolicy: IfNotPresent
       command: [ "top" ]
       volumeMounts:
         - mountPath: "/var/run/b-pvc"

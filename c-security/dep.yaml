@@ -19,6 +19,6 @@ spec:
       containers:
       - command:
         - top
-        image: bash
+        image: staranto/user-demo
         name: c-one
 ...

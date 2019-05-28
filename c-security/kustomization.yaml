@@ -2,7 +2,7 @@
 commonLabels:
   builtby: kustomize
 resources:
-  - c-dep.yaml
+  - dep.yaml
 patches:
-  - c-dep-sec.yaml
+  - dep-sec.yaml
 ...

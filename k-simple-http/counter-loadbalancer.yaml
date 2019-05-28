@@ -15,7 +15,7 @@ spec:
       containers:
       - name: counter
         image: staranto/simple-http-counter:latest
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8181
           name: http

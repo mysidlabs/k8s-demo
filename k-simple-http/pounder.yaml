@@ -22,7 +22,7 @@ spec:
       containers:
       - name: pounder
         image: staranto/simple-http-pounder:latest
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         command:
         - /tmp/pounder
         - http://counter:8181
