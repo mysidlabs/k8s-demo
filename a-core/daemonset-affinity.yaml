@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: a-ds
+  labels:
+    taranto.dev/app: k8s-demo
+spec:
+  selector:
+    matchLabels:
+      taranto.dev/app: k8s-demo
+  template:
+    metadata:
+      labels:
+        taranto.dev/app: k8s-demo
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: taranto.dev/cpu
+                operator: In
+                values:
+                - high
+      containers:
+      - name: a-one
+        image: bash
+        command: [ "top" ]
+...
