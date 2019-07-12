@@ -6,12 +6,12 @@ metadata:
   labels:
     taranto.dev/app: k8s-demo
 spec:
-  storageClassName: manual
+  storageClassName: b-sc
   persistentVolumeReclaimPolicy: Delete
   capacity:
     storage: 2Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/tmp/x-pv"
+    path: /tmp/x-pv
 ...

@@ -6,7 +6,7 @@ metadata:
   labels:
     taranto.dev/app: k8s-demo
 spec:
-  storageClassName: manual
+  storageClassName: b-sc
   accessModes:
     - ReadWriteOnce
   resources:
