@@ -1,0 +1,9 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://rock0:31112
+functions:
+  2048:
+    lang: dockerfile
+    handler: ./2048
+    image: staranto/2048:0.1
