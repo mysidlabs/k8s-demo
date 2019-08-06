@@ -46,11 +46,11 @@ metadata:
     taranto.dev/app: simple-http
     taranto.dev/app.simple-http.role: counter-service
 spec:
+  type: NodePort
   ports:
   - name: "http"
     port: 8181
     targetPort: 8181
   selector:
     taranto.dev/app.simple-http.role: counter
-  type: NodePort
 ...
