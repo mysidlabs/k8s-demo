@@ -9,16 +9,17 @@ spec:
       labels:
         taranto.dev/app: simple-http
         taranto.dev/app.simple-http.role: counter
-      annotations:
-        diamanti.com/endpoint0: '{"network":"default","perfTier":"low"}'
     spec:
       containers:
       - name: counter
         image: staranto/simple-http-counter:latest
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8181
           name: http
+        volumeMounts:
+        - name: vol-tz-config
+          mountPath: /etc/localtime
         env:
         - name: NODE
           valueFrom:
@@ -34,6 +35,10 @@ spec:
             path: /ready
             port: 8282
           initialDelaySeconds: 3
+      volumes:
+      - name: vol-tz-config
+        hostPath:
+          path: /usr/share/zoneinfo/America/New_York
       restartPolicy: Always
   replicas: 1
 ...
@@ -46,9 +51,10 @@ metadata:
     taranto.dev/app: simple-http
     taranto.dev/app.simple-http.role: counter-service
 spec:
-  type: NodePort
+  type: LoadBalancer
+  externalTrafficPolicy: Local
   ports:
-  - name: "http"
+  - name: http
     port: 8181
     targetPort: 8181
   selector:

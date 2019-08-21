@@ -1,9 +1,17 @@
+---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  namespace: k8s-demo-lock
-  name: c-role-get
+  name: c-role-zach
+  namespace: k8s-demo
 rules:
-- apiGroups: [""]
-  resources: ["pods"]
-  verbs: [ "get" ]
+- apiGroups:
+  - "*"
+  resources:
+  - "pods"
+  - "deploy"
+  verbs:
+  - get
+  - list
+  - watch
+...

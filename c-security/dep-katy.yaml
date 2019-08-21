@@ -2,10 +2,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     taranto.dev/app: k8s-demo
-  name: c-dep
+  name: c-dep-katy
 spec:
   replicas: 1
   selector:
@@ -17,8 +16,13 @@ spec:
         taranto.dev/app: c-dep
     spec:
       containers:
-      - command:
+      - name: c-one
+        image: staranto/k8s-demo-user
+        imagePullPolicy: Always
+        command:
         - top
-        image: staranto/user-demo
-        name: c-one
+      securityContext:
+        runAsUser: 3001
+        runAsGroup: 3001
+        fsGroup: 3001
 ...

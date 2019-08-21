@@ -1,8 +1,0 @@
----
-commonLabels:
-  builtby: kustomize
-resources:
-  - dep.yaml
-patches:
-  - dep-sec.yaml
-...
