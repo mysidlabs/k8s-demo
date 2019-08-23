@@ -10,7 +10,7 @@ spec:
         - backend:
             serviceName: counter
             servicePort: 8181
-    - host: "counter-web.local"
+    - host: "counter-web"
       http:
         paths:
         - backend:
