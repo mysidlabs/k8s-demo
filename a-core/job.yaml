@@ -12,6 +12,7 @@ spec:
       containers:
       - name: a-one 
         image: bash
+        imagePullPolicy: IfNotPresent
         command: [ "bash" ]
         args: [ "-c",  "for x in {1..10}; do uptime; sleep 5; done"]
       restartPolicy: Never

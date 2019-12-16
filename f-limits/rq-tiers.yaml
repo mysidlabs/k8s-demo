@@ -9,9 +9,9 @@ items:
     name: f-rq-high
   spec:
     hard:
-      cpu: "2000m"
-      memory: "1024Mi"
-      pods: "3"
+      cpu: "500m"
+      memory: "512Mi"
+      pods: "2"
     scopeSelector:
       matchExpressions:
       - operator : In
@@ -21,12 +21,26 @@ items:
 - apiVersion: v1
   kind: ResourceQuota
   metadata:
+    name: f-rq-medium
+  spec:
+    hard:
+      cpu: "250m"
+      memory: "256Mi"
+      pods: "3"
+    scopeSelector:
+      matchExpressions:
+      - operator : In
+        scopeName: PriorityClass
+        values: ["f-pc-medium"]
+
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
     name: f-rq-low
   spec:
     hard:
-      cpu: "500m"
-      memory: "256Mi"
-      pods: "10"
+      cpu: "125m"
+      memory: "128Mi"
     scopeSelector:
       matchExpressions:
       - operator : In

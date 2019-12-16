@@ -12,6 +12,12 @@ items:
 - apiVersion: scheduling.k8s.io/v1
   kind: PriorityClass
   metadata:
+    name: f-pc-medium
+  value: 900000
+
+- apiVersion: scheduling.k8s.io/v1
+  kind: PriorityClass
+  metadata:
     name: f-pc-low
   value: 800000
 

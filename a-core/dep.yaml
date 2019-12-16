@@ -21,5 +21,6 @@ spec:
       containers:
       - name: a-one
         image: bash
+        imagePullPolicy: IfNotPresent
         command: [ "top" ]
 ...
