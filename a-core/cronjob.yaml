@@ -5,17 +5,18 @@ metadata:
   name: a-cronjob
   labels:
     taranto.dev/app: k8s-demo
+    taranto.dev/section: a-core
 spec:
   schedule: "*/3 * * * *"
+  successfulJobsHistoryLimit: 5
   jobTemplate:
     spec:
       template:
         spec:
           containers:
           - name: a-one 
-            image: bash
+            image: staranto/k8s-demo-runner:latest
             imagePullPolicy: IfNotPresent
-            command: [ "bash" ]
-            args: [ "-c",  "for x in {1..10}; do uptime; sleep 5; done"]
           restartPolicy: Never
+          terminationGracePeriodSeconds: 1
 ...

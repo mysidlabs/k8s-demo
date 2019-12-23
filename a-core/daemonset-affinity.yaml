@@ -5,6 +5,7 @@ metadata:
   name: a-ds
   labels:
     taranto.dev/app: k8s-demo
+    taranto.dev/section: a-core
 spec:
   selector:
     matchLabels:
@@ -14,6 +15,11 @@ spec:
       labels:
         taranto.dev/app: k8s-demo
     spec:
+      containers:
+      - name: a-one
+        image: staranto/k8s-demo-runner:latest
+        imagePullPolicy: Always
+      terminationGracePeriodSeconds: 1
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -23,8 +29,4 @@ spec:
                 operator: In
                 values:
                 - high
-      containers:
-      - name: a-one
-        image: bash
-        command: [ "top" ]
 ...

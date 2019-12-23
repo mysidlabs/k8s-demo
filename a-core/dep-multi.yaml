@@ -5,6 +5,7 @@ metadata:
   creationTimestamp: null
   labels:
     taranto.dev/app: k8s-demo
+    taranto.dev/section: a-core
   name: a-dep-multi
 spec:
   replicas: 1
@@ -18,12 +19,34 @@ spec:
     spec:
       containers:
       - name: a-one
-        image: bash
-        command: [ "top" ]
+        image: staranto/k8s-demo-runner:latest
+        imagePullPolicy: Always
+        env:
+        - name: CID
+          value: a-one
+        volumeMounts:
+        - name: common-dir
+          mountPath: /tmp
       - name: a-two
-        image: bash
-        command: [ "sleep", "1000" ]
+        image: staranto/k8s-demo-runner:latest
+        imagePullPolicy: Always
+        env:
+        - name: CID
+          value: a-two
+        volumeMounts:
+        - name: common-dir
+          mountPath: /tmp
       - name: a-three
-        image: bash
-        command: [ "sleep", "1000" ]
+        image: staranto/k8s-demo-runner:latest
+        imagePullPolicy: Always
+        env:
+        - name: CID
+          value: a-three
+        volumeMounts:
+        - name: common-dir
+          mountPath: /tmp
+      terminationGracePeriodSeconds: 1
+      volumes:
+      - name: common-dir
+        emptyDir: {}
 ...

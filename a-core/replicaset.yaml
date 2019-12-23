@@ -6,7 +6,6 @@ metadata:
   labels:
     taranto.dev/app: k8s-demo
     taranto.dev/section: a-core
-    taranto.dev/example: a-replicaset
 spec:
   replicas: 3
   selector:
@@ -17,9 +16,9 @@ spec:
       labels:
         taranto.dev/example: a-replicaset
     spec:
-      terminationGracePeriodSeconds: 0
       containers:
       - name: a-one
-        image: bash
-        command: [ "top" ]
+        image: staranto/k8s-demo-runner:latest
+        imagePullPolicy: Always
+      terminationGracePeriodSeconds: 1
 ...

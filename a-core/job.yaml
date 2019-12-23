@@ -5,16 +5,15 @@ metadata:
   name: a-job
   labels:
     taranto.dev/app: k8s-demo
+    taranto.dev/section: a-core
 spec:
   template:
     spec:
-      terminationGracePeriodSeconds: 0
       containers:
       - name: a-one 
-        image: bash
-        imagePullPolicy: IfNotPresent
-        command: [ "bash" ]
-        args: [ "-c",  "for x in {1..10}; do uptime; sleep 5; done"]
+        image: staranto/k8s-demo-runner:latest
+        imagePullPolicy: Always
       restartPolicy: Never
+      terminationGracePeriodSeconds: 1
 ...
 

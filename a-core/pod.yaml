@@ -5,11 +5,11 @@ metadata:
   name: a-pod
   labels:
     taranto.dev/app: k8s-demo
+    taranto.dev/section: a-core
 spec:
-  terminationGracePeriodSeconds: 1
   containers:
-    - name: a-one
-      image: bash
-      imagePullPolicy: IfNotPresent
-      command: [ "watch", "uptime" ]
+  - name: a-one
+    image: staranto/k8s-demo-runner:latest
+    imagePullPolicy: Always
+  terminationGracePeriodSeconds: 1
 ...

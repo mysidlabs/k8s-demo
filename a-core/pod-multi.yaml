@@ -5,13 +5,27 @@ metadata:
   name: a-pod
   labels:
     taranto.dev/app: k8s-demo
+    taranto.dev/section: a-core
 spec:
-  terminationGracePeriodSeconds: 1
   containers:
     - name: a-one
-      image: bash
-      command: [ "top" ]
+      image: staranto/k8s-demo-runner:latest
+      env:
+      - name: CID
+        value: a-one
+      volumeMounts:
+      - name: common-dir
+        mountPath: /tmp
     - name: a-two
-      image: bash
-      command: [ "watch", "uptime" ]
+      image: staranto/k8s-demo-runner:latest
+      env:
+      - name: CID
+        value: a-two
+      volumeMounts:
+      - name: common-dir
+        mountPath: /tmp
+  terminationGracePeriodSeconds: 1
+  volumes:
+  - name: common-dir
+    emptyDir: {}
 ...
