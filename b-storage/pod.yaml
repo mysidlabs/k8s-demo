@@ -5,17 +5,18 @@ metadata:
   name: b-pod
   labels:
     taranto.dev/app: k8s-demo
+    taranto.dev/section: b-storage
 spec:
-  volumes:
-    - name: b-pvc-vol
-      persistentVolumeClaim:
-       claimName: b-pvc
   containers:
-    - name: b-bash
-      image: bash
-      imagePullPolicy: IfNotPresent
-      command: [ "top" ]
-      volumeMounts:
-        - mountPath: "/var/run/b-pvc"
-          name: b-pvc-vol
+  - name: b-one
+    image: staranto/k8s-demo-runner:latest
+    imagePullPolicy: Always
+    volumeMounts:
+    - name: b-vol
+      mountPath: "/var/run/b-vol"
+  terminationGracePeriodSeconds: 1
+  volumes:
+    - name: b-vol
+      persistentVolumeClaim:
+        claimName: b-pvc
 ...

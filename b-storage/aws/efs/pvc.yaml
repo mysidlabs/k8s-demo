@@ -1,0 +1,18 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: b-pvc 
+  annotations:
+    volume.beta.kubernetes.io/storage-provisioner: openshift.org/aws-efs
+  finalizers:
+    - kubernetes.io/pvc-protection
+spec:
+  accessModes:
+    - ReadWriteOnce 
+  resources:
+    requests:
+      storage: 2Gi 
+  storageClassName: b-sc 
+  volumeMode: Filesystem
+...
