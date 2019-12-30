@@ -2,21 +2,18 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
+  name: b-pv
   annotations:
     pv.beta.kubernetes.io/gid: '2049'
-    pv.kubernetes.io/provisioned-by: openshift.org/aws-efs
-  name: b-pv
   deletionGracePeriodSeconds: 0
-  finalizers:
-    - kubernetes.io/pv-protection
 spec:
   capacity:
-    storage: 10Gi
+    storage: 5Gi
   nfs:
     server: fs-40c2d139.efs.us-east-2.amazonaws.com
     path: /b-pv
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   storageClassName: b-sc
   mountOptions:

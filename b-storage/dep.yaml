@@ -24,7 +24,7 @@ spec:
       - name: b-one
         image: bash
         command: ["bash"]
-        args: ["-c", "while true; do echo `date` >> /var/run/b-pvc/`hostname`.log; sleep 5; done"]
+        args: ["-c", "while true; do echo `date` >> /var/run/b-pvc/`hostname`.log; sleep 1; done"]
         volumeMounts:
           - mountPath: "/var/run/b-pvc"
             name: b-pvc-vol
