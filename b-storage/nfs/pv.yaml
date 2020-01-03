@@ -1,0 +1,22 @@
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: b-pv
+  annotations:
+    pv.beta.kubernetes.io/gid: '2049'
+  deletionGracePeriodSeconds: 0
+spec:
+  capacity:
+    storage: 5Gi
+  nfs:
+    server: fs-40c2d139.efs.us-east-2.amazonaws.com
+    path: /b-pv
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: b-sc-nfs
+  mountOptions:
+    - vers=4.1
+  volumeMode: Filesystem
+...

@@ -13,6 +13,6 @@ spec:
   resources:
     requests:
       storage: 1Mi
-  storageClassName: b-sc 
+  storageClassName: b-sc-nfs
   volumeMode: Filesystem
 ...
