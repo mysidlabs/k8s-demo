@@ -1,0 +1,35 @@
+# Exclude a workload from nodes with a specific label value.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    taranto.dev/app: k8s-demo
+    taranto.dev/section: e-scheduling
+    taranto.dev/example: e-dep-node-label-antiaffinity
+  name: e-dep-node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      taranto.dev/example: e-dep-node
+  template:
+    metadata:
+      labels:
+        taranto.dev/example: e-dep-node
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: e-one
+        image: staranto/k8s-demo-runner:latest
+        imagePullPolicy: IfNotPresent
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: taranto.dev/class
+                operator: NotIn
+                values:
+                - batch
+...

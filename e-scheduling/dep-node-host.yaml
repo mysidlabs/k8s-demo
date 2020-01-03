@@ -1,0 +1,35 @@
+# ANTI-PATTERN: Pin a workload to a specific worker node.
+# The only reasonable use case is if you want to run a 
+# workload on a specific worker because of the capabilities
+# of that host (ie. GPU).  Even then, you should apply
+# labels to those hosts and then deploy the workload with
+# a selection label.
+# a-core/daemonset-affinity.yaml
+# e-scheduling/dep-node-label-affinity.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    taranto.dev/app: k8s-demo
+    taranto.dev/section: e-scheduling
+    taranto.dev/example: e-dep-node
+  name: e-dep-node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      taranto.dev/example: e-dep-node
+  template:
+    metadata:
+      labels:
+        taranto.dev/example: e-dep-node
+    spec:
+      nodeSelector:
+        # Edit this value.  kubectl get nodes -L kubernetes.io/hostname
+        kubernetes.io/hostname: k3d-1-worker-2
+      containers:
+      - name: e-one
+        image: staranto/k8s-demo-runner:latest
+        imagePullPolicy: IfNotPresent
+...

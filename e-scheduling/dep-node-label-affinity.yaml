@@ -1,0 +1,27 @@
+# Pin a workload to worker nodes with a specific label value.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    taranto.dev/app: k8s-demo
+    taranto.dev/section: e-scheduling
+    taranto.dev/example: e-dep-node-label-affinity
+  name: e-dep-node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      taranto.dev/example: e-dep-node
+  template:
+    metadata:
+      labels:
+        taranto.dev/example: e-dep-node
+    spec:
+      containers:
+      - name: e-one
+        image: staranto/k8s-demo-runner:latest
+        imagePullPolicy: IfNotPresent
+      nodeSelector:
+        taranto.dev/cpu: high
+...
