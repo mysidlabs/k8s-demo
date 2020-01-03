@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: counter-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+spec:
+  rules:
+    - host: "counter-web"
+      http:
+        paths:
+        - backend:
+            serviceName: counter
+            servicePort: 8181
+    - host: "counter-web"
+      http:
+        paths:
+        - backend:
+            serviceName: counter
+            servicePort: 8181
