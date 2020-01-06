@@ -22,15 +22,12 @@ spec:
       app: nfs-client-provisioner
   strategy:
     type: Recreate
-  selector:
-    matchLabels:
-      app: nfs-client-provisioner
   template:
     metadata:
       labels:
         app: nfs-client-provisioner
     spec:
-      serviceAccountName: efs-provisioner
+      serviceAccountName: sa-nfs-provisioner
       containers:
         - name: nfs-client-provisioner
           image: quay.io/external_storage/nfs-client-provisioner:latest
@@ -50,13 +47,13 @@ spec:
             server: fs-40c2d139.efs.us-east-2.amazonaws.com
             path: /
 ...
-#---
-#apiVersion: v1
-#kind: ServiceAccount
-#metadata:
-#  name: efs-client-provisioner
-#  namespace: k8s-demo
-#...
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+ name: sa-nfs-provisioner
+ namespace: mysidlabs-storage
+...
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -83,8 +80,8 @@ metadata:
   name: run-nfs-client-provisioner
 subjects:
   - kind: ServiceAccount
-    name: efs-client-provisioner
-    namespace: k8s-demo
+    name: sa-nfs-provisioner
+    namespace: mysidlabs-storage
 roleRef:
   kind: ClusterRole
   name: nfs-client-provisioner-runner
@@ -108,8 +105,8 @@ metadata:
   name: leader-locking-nfs-client-provisioner
 subjects:
   - kind: ServiceAccount
-    name: efs-client-provisioner
-    namespace: k8s-demo
+    name: sa-nfs-provisioner
+    namespace: mysidlabs-storage
 roleRef:
   kind: Role
   name: leader-locking-nfs-client-provisioner

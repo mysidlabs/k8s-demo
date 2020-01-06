@@ -4,6 +4,7 @@ apiVersion: v1
 metadata:
   name: b-pvc 
   annotations:
+    volume.beta.kubernetes.io/storage-class: b-sc-nfs
     volume.beta.kubernetes.io/storage-provisioner: openshift.org/aws-efs
   finalizers:
     - kubernetes.io/pvc-protection
