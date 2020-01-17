@@ -20,28 +20,28 @@ spec:
         ports:
         - containerPort: 8181
           name: http
-        # volumeMounts:
-        # - name: vol-tz-config
-        #   mountPath: /etc/localtime
+        resources:
+          requests: 
+            cpu: "128m"
+            memory: "256Mi"
+          limits:
+            cpu: "256m"
+            memory: "384Mi"
         env:
         - name: NODE
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-      #   livenessProbe:
-      #     httpGet:
-      #       path: /live
-      #       port: 8282
-      #     initialDelaySeconds: 3
-      #   readinessProbe:
-      #     httpGet:
-      #       path: /ready
-      #       port: 8282
-      #     initialDelaySeconds: 3
-      # volumes:
-      # - name: vol-tz-config
-      #   hostPath:
-      #     path: /usr/share/zoneinfo/America/New_York
+        livenessProbe:
+          httpGet:
+            path: /live
+            port: 8282
+            initialDelaySeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8282
+            initialDelaySeconds: 3
       restartPolicy: Always
   replicas: 1
 ...

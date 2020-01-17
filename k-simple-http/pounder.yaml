@@ -27,6 +27,10 @@ spec:
         - /tmp/pounder
         - http://counter:8181
         - yellow
+        resources:
+          limits:
+            cpu: "64m"
+            memory: "32Mi"
         lifecycle:
           preStop:
             exec:
@@ -53,11 +57,4 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 5
           failureThreshold: 3
-        # resources:
-        #   limits:
-        #     memory: "64Mi"
-        #     cpu: "200m"
-        #   requests:
-        #     memory: "32Mi"
-        #     cpu: "100m"
 ...
