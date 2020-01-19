@@ -25,3 +25,4 @@ All the deployment artifacts for this lab can be found in the `~/dev/k8s-demo/a-
    3. A deployment always reconciles the desired state (in this example, simply three pods) with the current state.  If there is a difference, OpenShift will resolve it automatically.
       1. Delete one of the running pods from either the OpenShift console or with `oc delete pod/a-dep-xxxxxx-yyyy`.  Notice that almost immediately OpenShift recreates a new pod to being the deployment back to it's desired state.
       2. Delete the replica set from either the OpenShift console or with `oc delete rs/a-dep-xxxxxx`.  OpenShift can tolerate a major disruption and automatically bring the deployment back to it's desired state.
+4. Using the same tools and procedures as these first examples, feel free to experiment with the other YAML documents in the `a-core` directory.  In particular - `job.yaml`, `cronjob.yaml` and `daemonset.yaml`.
