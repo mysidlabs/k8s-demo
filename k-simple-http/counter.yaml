@@ -36,12 +36,12 @@ spec:
           httpGet:
             path: /live
             port: 8282
-            initialDelaySeconds: 3
+          initialDelaySeconds: 3
         readinessProbe:
           httpGet:
             path: /ready
             port: 8282
-            initialDelaySeconds: 3
+          initialDelaySeconds: 3
       restartPolicy: Always
   replicas: 1
 ...
