@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: pounder
 spec:
-  replicas: 4
+  replicas: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:

@@ -56,8 +56,6 @@ metadata:
 spec:
   selector:
     taranto.dev/app.simple-http.role: counter
-  # type: LoadBalancer
-  # externalTrafficPolicy: Local
   ports:
   - name: http
     port: 8181
