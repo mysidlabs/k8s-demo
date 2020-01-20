@@ -4,21 +4,21 @@ kind: ReplicaSet
 metadata:
   name: a-rs
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: a-core
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: a-core
 spec:
   replicas: 3
   selector:
     matchLabels:
-      taranto.dev/example: a-replicaset
+      mysidlabs.com/example: a-replicaset
   template:
     metadata:
       labels:
-        taranto.dev/example: a-replicaset
+        mysidlabs.com/example: a-replicaset
     spec:
       containers:
       - name: a-one
-        image: staranto/k8s-demo-runner:latest
+        image: mysidlabs/k8s-demo-runner:0.1
         imagePullPolicy: Always
       terminationGracePeriodSeconds: 1
 ...

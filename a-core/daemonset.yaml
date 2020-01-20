@@ -4,20 +4,20 @@ kind: DaemonSet
 metadata:
   name: a-ds
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: a-core
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: a-core
 spec:
   selector:
     matchLabels:
-      taranto.dev/app: k8s-demo
+      mysidlabs.com/app: k8s-demo
   template:
     metadata:
       labels:
-        taranto.dev/app: k8s-demo
+        mysidlabs.com/app: k8s-demo
     spec:
       containers:
       - name: a-one
-        image: staranto/k8s-demo-runner:latest
+        image: mysidlabs/k8s-demo-runner:0.1
         imagePullPolicy: Always
       terminationGracePeriodSeconds: 1
 ...

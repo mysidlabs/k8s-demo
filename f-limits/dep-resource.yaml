@@ -3,17 +3,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    taranto.dev/app: k8s-demo
+    mysidlabs.com/app: k8s-demo
   name: f-dep
 spec:
   replicas: 1
   selector:
     matchLabels:
-      taranto.dev/app: f-dep
+      mysidlabs.com/app: f-dep
   template:
     metadata:
       labels:
-        taranto.dev/app: f-dep
+        mysidlabs.com/app: f-dep
     spec:
       terminationGracePeriodSeconds: 0
       containers:

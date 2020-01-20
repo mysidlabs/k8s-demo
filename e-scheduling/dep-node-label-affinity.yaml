@@ -4,24 +4,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: e-scheduling
-    taranto.dev/example: e-dep-node-label-affinity
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: e-scheduling
+    mysidlabs.com/example: e-dep-node-label-affinity
   name: e-dep-node
 spec:
   replicas: 1
   selector:
     matchLabels:
-      taranto.dev/example: e-dep-node
+      mysidlabs.com/example: e-dep-node
   template:
     metadata:
       labels:
-        taranto.dev/example: e-dep-node
+        mysidlabs.com/example: e-dep-node
     spec:
       containers:
       - name: e-one
-        image: staranto/k8s-demo-runner:latest
+        image: mysidlabs/k8s-demo-runner:0.1
         imagePullPolicy: IfNotPresent
       nodeSelector:
-        taranto.dev/cpu: high
+        mysidlabs.com/cpu: high
 ...

@@ -4,7 +4,7 @@ kind: Job
 metadata:
   name: g-job-env
   labels:
-    taranto.dev/app: k8s-demo
+    mysidlabs.com/app: k8s-demo
 spec:
   template:
     spec:

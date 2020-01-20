@@ -5,8 +5,8 @@ kind: Pod
 metadata:
   name: g-pod-file
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: g-config
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: g-config
 spec:
   containers:
   - name: g-file-one 

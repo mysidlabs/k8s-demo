@@ -4,8 +4,8 @@ kind: CronJob
 metadata:
   name: a-cronjob
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: a-core
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: a-core
 spec:
   schedule: "*/3 * * * *"
   successfulJobsHistoryLimit: 5
@@ -15,7 +15,7 @@ spec:
         spec:
           containers:
           - name: a-one 
-            image: staranto/k8s-demo-runner:latest
+            image: mysidlabs/k8s-demo-runner:0.1
             imagePullPolicy: IfNotPresent
           restartPolicy: Never
           terminationGracePeriodSeconds: 1

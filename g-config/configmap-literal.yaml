@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: g-configmap-literal
   labels:
-    taranto.dev/app: k8s-demo
+    mysidlabs.com/app: k8s-demo
 data:
   customer: PACCAR
   state: WA

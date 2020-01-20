@@ -4,7 +4,7 @@ kind: ResourceQuota
 metadata:
   name: f-rq
   labels:
-    taranto.dev/app: k8s-demo   
+    mysidlabs.com/app: k8s-demo   
 spec:
   hard:
     pods: 3

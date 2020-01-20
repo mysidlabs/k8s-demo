@@ -3,18 +3,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: e-targeted-deploy
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: e-targeted-deploy
   name: e-dep-node
 spec:
   replicas: 1
   selector:
     matchLabels:
-      taranto.dev/example: e-dep-node
+      mysidlabs.com/example: e-dep-node
   template:
     metadata:
       labels:
-        taranto.dev/example: e-dep-node
+        mysidlabs.com/example: e-dep-node
     spec:
       nodeSelector:
         kubernetes.io/hostname: rock2

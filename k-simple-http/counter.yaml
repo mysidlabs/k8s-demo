@@ -6,16 +6,15 @@ metadata:
 spec:
   selector:
     matchLabels:
-      taranto.dev/app: simple-http
+      mysidlabs.com/app: simple-http
   template:
     metadata:
       labels:
-        taranto.dev/app: simple-http
-        taranto.dev/app.simple-http.role: counter
+        mysidlabs.com/app: simple-http
+        mysidlabs.com/app.simple-http.role: counter
     spec:
       containers:
       - name: counter
-        image: staranto/simple-http-counter:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8181
@@ -51,11 +50,11 @@ kind: Service
 metadata:
   name: counter
   labels:
-    taranto.dev/app: simple-http
-    taranto.dev/app.simple-http.role: counter-service
+    mysidlabs.com/app: simple-http
+    mysidlabs.com/app.simple-http.role: counter-service
 spec:
   selector:
-    taranto.dev/app.simple-http.role: counter
+    mysidlabs.com/app.simple-http.role: counter
   ports:
   - name: http
     port: 8181

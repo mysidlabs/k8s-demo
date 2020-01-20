@@ -3,18 +3,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: d-networking
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: d-networking
   name: d-front
 spec:
   replicas: 1
   selector:
     matchLabels:
-      taranto.dev/example: d-front
+      mysidlabs.com/example: d-front
   template:
     metadata:
       labels:
-        taranto.dev/example: d-front
+        mysidlabs.com/example: d-front
     spec:
       containers:
       - name: front

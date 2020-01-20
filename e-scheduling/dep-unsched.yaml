@@ -3,22 +3,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: e-targeted-deploy
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: e-targeted-deploy
   name: e-dep-unsched
 spec:
   replicas: 1
   selector:
     matchLabels:
-      taranto.dev/example: e-dep-unsched
+      mysidlabs.com/example: e-dep-unsched
   template:
     metadata:
       labels:
-        taranto.dev/example: e-dep-unsched
+        mysidlabs.com/example: e-dep-unsched
     spec:
       nodeSelector:
-        taranto.dev/disk: fast
-        taranto.dev/mem: tiny
+        mysidlabs.com/disk: fast
+        mysidlabs.com/mem: tiny
       containers:
       - name: e-one
         image: bash

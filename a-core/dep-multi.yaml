@@ -4,22 +4,22 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: a-core
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: a-core
   name: a-dep-multi
 spec:
   replicas: 1
   selector:
     matchLabels:
-      taranto.dev/app: a-dep-multi
+      mysidlabs.com/app: a-dep-multi
   template:
     metadata:
       labels:
-        taranto.dev/app: a-dep-multi
+        mysidlabs.com/app: a-dep-multi
     spec:
       containers:
       - name: a-one
-        image: staranto/k8s-demo-runner:latest
+        image: mysidlabs/k8s-demo-runner:0.1
         imagePullPolicy: Always
         env:
         - name: CID
@@ -28,7 +28,7 @@ spec:
         - name: common-dir
           mountPath: /tmp
       - name: a-two
-        image: staranto/k8s-demo-runner:latest
+        image: mysidlabs/k8s-demo-runner:0.1
         imagePullPolicy: Always
         env:
         - name: CID
@@ -37,7 +37,7 @@ spec:
         - name: common-dir
           mountPath: /tmp
       - name: a-three
-        image: staranto/k8s-demo-runner:latest
+        image: mysidlabs/k8s-demo-runner:0.1
         imagePullPolicy: Always
         env:
         - name: CID

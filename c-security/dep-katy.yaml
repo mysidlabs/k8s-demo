@@ -3,17 +3,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    taranto.dev/app: k8s-demo
+    mysidlabs.com/app: k8s-demo
   name: c-dep-katy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      taranto.dev/app: c-dep
+      mysidlabs.com/app: c-dep
   template:
     metadata:
       labels:
-        taranto.dev/app: c-dep
+        mysidlabs.com/app: c-dep
     spec:
       containers:
       - name: c-one

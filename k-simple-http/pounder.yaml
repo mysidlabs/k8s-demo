@@ -12,19 +12,19 @@ spec:
       maxUnavailable: 25% 
   selector:
     matchLabels:
-      taranto.dev/app.simple-http.role: pounder
+      mysidlabs.com/app.simple-http.role: pounder
   template:
     metadata:
       labels:
-        taranto.dev/app: simple-http
-        taranto.dev/app.simple-http.role: pounder
+        mysidlabs.com/app: simple-http
+        mysidlabs.com/app.simple-http.role: pounder
       annotations:
         config: ""
     spec:
       terminationGracePeriodSeconds: 0
       containers:
       - name: pounder
-        image: staranto/simple-http-pounder:latest
+        image: mysidlabs/simple-http-pounder:0.1
         imagePullPolicy: Always
         command:
         - /tmp/pounder

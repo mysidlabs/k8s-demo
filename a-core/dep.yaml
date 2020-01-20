@@ -4,17 +4,17 @@ kind: Deployment
 metadata:
   name: a-dep
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: a-core
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: a-core
 spec:
   replicas: 3
   selector:
     matchLabels:
-      taranto.dev/example: a-dep
+      mysidlabs.com/example: a-dep
   template:
     metadata:
       labels:
-        taranto.dev/example: a-dep
+        mysidlabs.com/example: a-dep
     spec:
       containers:
       - name: a-one

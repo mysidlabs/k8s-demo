@@ -3,25 +3,25 @@ kind: Deployment
 metadata:
   name: e-dep-web
   labels: 
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: e-targeted-deploy
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: e-targeted-deploy
 spec:
   selector:
     matchLabels:
-      taranto.dev/example: e-dep-affinity
+      mysidlabs.com/example: e-dep-affinity
   replicas: 3
   template:
     metadata:
       labels:
-        taranto.dev/example: e-dep-affinity
-        taranto.dev/tier: web
+        mysidlabs.com/example: e-dep-affinity
+        mysidlabs.com/tier: web
     spec:
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-              - key: taranto.dev/tier
+              - key: mysidlabs.com/tier
                 operator: In
                 values:
                 - cache

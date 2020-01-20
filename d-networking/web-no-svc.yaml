@@ -4,19 +4,19 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: d-networking
-    taranto.dev/tier: web
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: d-networking
+    mysidlabs.com/tier: web
   name: d-web
 spec:
   replicas: 1
   selector:
     matchLabels:
-      taranto.dev/example: d-web
+      mysidlabs.com/example: d-web
   template:
     metadata:
       labels:
-        taranto.dev/example: d-web
+        mysidlabs.com/example: d-web
     spec:
       containers:
       - name: web

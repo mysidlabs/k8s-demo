@@ -4,8 +4,8 @@ kind: ConfigMap
 metadata:
   name: b-cm-efs-provisioner
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: b-storage
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: b-storage
 data:
   file.system.id: fs-40c2d139 
   aws.region: us-east-2
@@ -17,8 +17,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: b-cr-efs-provisioner-runner
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: b-storage
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: b-storage
 rules:
   - apiGroups: [""]
     resources: ["persistentvolumes"]
@@ -43,8 +43,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: b-crb-efs-provisioner
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: b-storage
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: b-storage
 subjects:
   - kind: ServiceAccount
     name: efs-provisioner

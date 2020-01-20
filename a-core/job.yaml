@@ -4,14 +4,14 @@ kind: Job
 metadata:
   name: a-job
   labels:
-    taranto.dev/app: k8s-demo
-    taranto.dev/section: a-core
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: a-core
 spec:
   template:
     spec:
       containers:
       - name: a-one 
-        image: staranto/k8s-demo-runner:latest
+        image: mysidlabs/k8s-demo-runner:0.1
         imagePullPolicy: Always
       restartPolicy: Never
       terminationGracePeriodSeconds: 1
