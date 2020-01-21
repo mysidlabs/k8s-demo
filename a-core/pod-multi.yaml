@@ -10,6 +10,13 @@ spec:
   containers:
     - name: a-one
       image: mysidlabs/k8s-demo-runner:0.1
+      resources:
+        requests:
+          cpu: 75m
+          memory: 100Mi
+        limits:
+          cpu: 150m
+          memory: 150Mi
       env:
       - name: CID
         value: a-one
@@ -18,6 +25,13 @@ spec:
         mountPath: /tmp
     - name: a-two
       image: mysidlabs/k8s-demo-runner:0.1
+      resources:
+        requests:
+          cpu: 75m
+          memory: 100Mi
+        limits:
+          cpu: 150m
+          memory: 150Mi
       env:
       - name: CID
         value: a-two

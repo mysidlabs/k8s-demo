@@ -50,3 +50,6 @@ All the deployment artifacts for this lab can be found in the `~/dev/k8s-demo/k-
 2. Use the OpenShift console or `oc delete pod/counter-xxxxxx-yyyy` to delete the single pod in the Counter deployment.
    1. Notice that OpenShift immediately creates a new instance of the pod to maintain the desired state of the Counter deployment.
    1. Also notice the the Consumer workload immediately recognizes the new Counter.  Since the state is ephemeral in this application, it is lost, but OpenShift dynamically "repaired" the workload.
+
+
+## Lab 3 - Dynamically Scaling Workloads

@@ -19,7 +19,7 @@ spec:
       containers:
       - name: f-one
         image: staranto/my-toolkit:arm64
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         command: [ "watch", "uptime" ]
         #command: [ "sh", "-c", "stress-ng --brk 2 --stack 2 --timeout 180s" ]
         resources:

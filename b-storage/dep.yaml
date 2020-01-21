@@ -19,7 +19,7 @@ spec:
       containers:
       - name: b-one
         image: mysidlabs/k8s-demo-runner:0.1
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
         - name: KUBERNETES_NS
           valueFrom:

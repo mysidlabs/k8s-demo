@@ -20,7 +20,14 @@ spec:
       containers:
       - name: a-one
         image: mysidlabs/k8s-demo-runner:0.1
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 75m
+            memory: 100Mi
+          limits:
+            cpu: 150m
+            memory: 150Mi
         env:
         - name: CID
           value: a-one
@@ -29,8 +36,15 @@ spec:
           mountPath: /tmp
       - name: a-two
         image: mysidlabs/k8s-demo-runner:0.1
-        imagePullPolicy: Always
-        env:
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 75m
+            memory: 100Mi
+          limits:
+            cpu: 150m
+            memory: 150Mi
+      env:
         - name: CID
           value: a-two
         volumeMounts:
@@ -38,8 +52,15 @@ spec:
           mountPath: /tmp
       - name: a-three
         image: mysidlabs/k8s-demo-runner:0.1
-        imagePullPolicy: Always
-        env:
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 75m
+            memory: 100Mi
+          limits:
+            cpu: 150m
+            memory: 150Mi
+      env:
         - name: CID
           value: a-three
         volumeMounts:

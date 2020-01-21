@@ -25,7 +25,7 @@ spec:
       containers:
       - name: pounder
         image: mysidlabs/simple-http-pounder:0.1
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         command:
         - /tmp/pounder
         - http://counter:8181
