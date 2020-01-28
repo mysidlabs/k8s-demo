@@ -1,7 +1,7 @@
 # Sirius Immersion Days - Student Guide
 
 ## Goal
-Provide a basic foundation of the concepts in containers in general and Kubernetes specifically.  The agenda is structured so that we can stop as time or knowledge dictates.  Each group of demo exercises builds on the previous.
+Provide a basic foundation in container concepts in general and Kubernetes specifically.  The agenda is structured so that we can stop as time or knowledge dictates.  Each group of demo exercises builds on the previous.
 
 ## Lab 1 - Deploy Your First App 
 
