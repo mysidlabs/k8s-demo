@@ -5,7 +5,7 @@ Provide a basic foundation in container concepts in general and Kubernetes speci
 
 ## Lab 1 - Deploy Your First App 
 
-All the deployment artifacts for this lab can be found in the `~/dev/k8s-demo/a-core` directory inside your lab container.
+All the deployment artifacts for this lab can be found in the `~/dev/k8s-demo/a-core` directory inside the lab container.
 
 1. Create your first pod.
    1. `oc apply -f pod.yaml` will create and run your first OpenShift application. 
