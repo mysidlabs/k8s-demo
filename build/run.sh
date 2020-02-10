@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-umask u=rw,g=rw,o=rw
+#umask u=rw,g=rw,o=rw
 
 [[ ! -z "${CID}" ]] && xcid=" ${CID}" || xcid=""
 [[ ! -z "${KUBERNETES_NS}" ]] && ns="${KUBERNETES_NS}/" || ns=""
