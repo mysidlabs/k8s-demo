@@ -17,7 +17,7 @@ All the deployment artifacts for this lab can be found in the `~/dev/k8s-demo/a-
    2. You can see the running pod from the OpenShift console or with `oc get pods`.  Notice the `2/2` - this indicates that there are two containers defined and running 'in' the pod.
    3. You can explore the pod in more detail in the same way you did with your first pod.
    4. Monitor the logs from the two containers in this pod from the OpenShift console or with `oc logs -f a-pod --all-containers`.
-   5. Gain access to one of the pod containers via a shell from the OpenShift Console or with `oc exec -it a-pod a-one sh`.
+   5. Gain access to one of the pod containers via a shell from the OpenShift Console or with `oc exec -it a-pod -c a-one sh`.
    6. Delete the pod in the same way as your first pod.
 3. Create and run a deployment.
    1. `oc apply -f dep.yaml`.  The results will be noticeably different.
