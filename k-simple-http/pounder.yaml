@@ -48,7 +48,7 @@ spec:
         - name: PROBE
           value: "1"
         - name: FAILCEILING
-          value: "10240"
+          value: "2048"
         - name: NODE
           valueFrom:
             fieldRef:
