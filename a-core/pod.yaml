@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
   - name: a-one
-    image: mysidlabs/k8s-demo-runner:0.3
+    image: mysidlabs/k8s-demo-runner:1.1.0
     imagePullPolicy: IfNotPresent
     resources:
       requests:
