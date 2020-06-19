@@ -1,0 +1,16 @@
+/* Your custom styles */
+#dropArea {
+    border: 4px dashed #029;
+    border-radius: 20px;
+    background-color: #e9e9e9;
+    width: 100%;
+    font-family: sans-serif;
+    margin: 20px auto;
+    padding: 50px;
+}
+#dropArea.highlight {
+    border: 4px dashed green;
+}
+.highlight-text {
+    color: green;
+}
