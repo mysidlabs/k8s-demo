@@ -30,12 +30,32 @@ module.exports = {
         app.get('/tasks/:id', (req,res) => {
             Task.findById(req.params.id).lean().exec(function(err,task) {
                 if(err !== undefined) {
-                    console.log(task);
                     res.json(JSON.stringify(task));
                 } else {
                     res.status(400).send("Failed to find result");
                 }
             });
+        });
+
+        app.patch('/tasks',(req,res) => {
+            Task.findById({_id: req.body._id},
+                function(err,doc) {
+                    if(err !== undefined && err) {
+                        res.status(400).send(JSON.stringify(err));
+                    } else {
+                        doc.name = req.body.name;
+                        doc.duration = req.body.duration;
+                        doc.save(function(er2) {
+                            if(er2 !== undefined && er2) {
+                                res.status(400).send(JSON.stringify(er2));
+                            } else {
+                                res.json({ok:true});
+                            }
+                        });
+                        
+                    }
+                }
+            );
         });
 
         app.delete('/tasks/:id', (req,res) => {
