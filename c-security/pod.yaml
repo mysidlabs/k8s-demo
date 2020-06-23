@@ -1,0 +1,15 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: c-pod
+  labels:
+    taranto.dev/app: k8s-demo
+    taranto.dev/section: c-security
+spec:
+  containers:
+  - name: c-one
+    image: staranto/k8s-demo-runner:latest
+    imagePullPolicy: Always
+  terminationGracePeriodSeconds: 1
+...
