@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: a-ds
+  labels:
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: a-core
+spec:
+  selector:
+    matchLabels:
+      mysidlabs.com/app: k8s-demo
+  template:
+    metadata:
+      labels:
+        mysidlabs.com/app: k8s-demo
+    spec:
+      containers:
+      - name: a-one
+        image: mysidlabs/k8s-demo-runner:1.1.0
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 75m
+            memory: 100Mi
+          limits:
+            cpu: 150m
+            memory: 150Mi
+      terminationGracePeriodSeconds: 1
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingRequiredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: mysidlabs.com/cpu
+                operator: In
+                values:
+                - high
+...
