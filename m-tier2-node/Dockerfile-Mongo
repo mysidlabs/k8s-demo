@@ -1,6 +1,3 @@
 FROM mongo
 
-RUN mkdir -p /data/db && \
-    mkdir -p /data/configdb && \
-    chmod -R go+w /data/ && \
-    chown -R mongodb:mongodb /data/
+USER 999
