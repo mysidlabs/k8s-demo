@@ -19,8 +19,6 @@ spec:
         imagePullPolicy: Always
         securityContext:
           runAsUser: 999
-          runAsGroup: 999
-          # these mongo id's are specified in /etc/passwd of container
         ports:
         - containerPort: 27017
         #   name: mongo-port
