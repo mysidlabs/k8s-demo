@@ -7,7 +7,6 @@ items:
   kind: Role
   metadata:
     name: role-privileged
-    namespace: staranto
   rules:
   - apiGroups:
     - security.openshift.io
