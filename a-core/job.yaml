@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: a-one 
-        image: mysidlabs/k8s-demo-runner:1.1.0
+        image: mysidlabs/k8s-demo-runner:1.2.0
         imagePullPolicy: IfNotPresent
         resources:
           requests:
