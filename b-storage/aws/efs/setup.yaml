@@ -48,7 +48,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: efs-provisioner
-    namespace: k8s-demo
+    namespace: staranto
 roleRef:
   kind: ClusterRole
   name: b-cr-efs-provisioner-runner
@@ -72,7 +72,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: efs-provisioner
-    namespace: k8s-demo 
+    namespace: staranto
 roleRef:
   kind: Role
   name: b-r-leader-locking-efs-provisioner
@@ -128,6 +128,6 @@ spec:
   volumes:
     - name: pv-volume
       nfs:
-        server: fs-40c2d139.efs.us-east-2.amazonaws.com 
+        server: fs-a8a600d0.efs.us-east-2.amazonaws.com 
         path: / 
 ...

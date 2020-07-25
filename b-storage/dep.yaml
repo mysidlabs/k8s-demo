@@ -31,24 +31,5 @@ spec:
       volumes:
         - name: b-vol
           persistentVolumeClaim:
-            claimName: b-pvc-dep        
-...
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: b-pvc-dep
-  annotations:
-    volume.beta.kubernetes.io/storage-class: b-sc-nfs
-    volume.beta.kubernetes.io/storage-provisioner: openshift.org/aws-efs
-  finalizers:
-    - kubernetes.io/pvc-protection
-spec:
-  accessModes:
-    - ReadWriteMany 
-  resources:
-    requests:
-      storage: 1Mi
-  storageClassName: b-sc-nfs
-  volumeMode: Filesystem
+            claimName: b-pvc
 ...

@@ -10,6 +10,9 @@ spec:
   host: ""
   port:
     targetPort: http
+  tls:
+    insecureEdgeTerminationPolicy: Allow
+    termination: edge
   to:
     kind: Service
     name: counter
