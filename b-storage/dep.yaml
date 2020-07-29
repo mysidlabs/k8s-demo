@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: b-one
-        image: staranto/k8s-demo-runner:latest
+        image: staranto/k8s-demo-runner:1.2.1
         imagePullPolicy: Always
         env:
         - name: KUBERNETES_NS
@@ -28,6 +28,7 @@ spec:
         volumeMounts:
           - mountPath: "/var/run/demo"
             name: b-vol
+      terminationGracePeriodSeconds: 1
       volumes:
         - name: b-vol
           persistentVolumeClaim:
