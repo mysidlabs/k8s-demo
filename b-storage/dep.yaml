@@ -5,6 +5,7 @@ metadata:
   labels:
     taranto.dev/app: k8s-demo
     taranto.dev/section: b-storage
+    taranto.dev/kapp: one
   name: b-dep
 spec:
   replicas: 1

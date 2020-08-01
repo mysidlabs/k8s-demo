@@ -7,7 +7,7 @@ spec:
   capacity:
     storage: 5Gi
   nfs:
-    server: www.0.taranto.dev
+    server: nfs-a.0.taranto.dev
     path: /srv/nfs
   accessModes:
     - ReadWriteMany
