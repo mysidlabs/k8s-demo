@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: psp:run-as-any
+  namespace: staranto
+rules:
+- apiGroups:
+  - policy
+  resourceNames:
+  - run-as-any
+  resources:
+  - podsecuritypolicies
+  verbs:
+  - use

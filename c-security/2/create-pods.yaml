@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: List
+items:
+
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    name: z-create-pods
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - pods
+    verbs:
+    - create
+
+- apiVersion: rbac.authorization.k8s.io/v1  
+  kind: RoleBinding
+  metadata:
+    name: z-create-pods
+  roleRef:
+    kind: Role
+    apiGroup: rbac.authorization.k8s.io
+    name: z-create-pods
+  subjects:
+  - kind: ServiceAccount
+    name: z-sa
+
+...

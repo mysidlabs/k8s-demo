@@ -1,0 +1,12 @@
+---
+# https://docs.openshift.com/container-platform/4.3/architecture/admission-plug-ins.html#configuring-dynamic-admission_admission-plug-ins
+apiVersion: v1
+kind: List
+items:
+
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: z-sa-weak
+    namespace: staranto
+...

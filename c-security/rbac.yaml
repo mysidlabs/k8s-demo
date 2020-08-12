@@ -1,0 +1,110 @@
+---
+# https://docs.openshift.com/container-platform/4.3/architecture/admission-plug-ins.html#configuring-dynamic-admission_admission-plug-ins
+apiVersion: v1
+kind: List
+items:
+
+- apiVersion: rbac.authorization.k8s.io/v1  
+  kind: RoleBinding
+  metadata:
+    name: z-rb-weak
+  roleRef:
+    kind: ClusterRole
+    apiGroup: rbac.authorization.k8s.io
+    name: system:basic-user
+  subjects:
+  - kind: ServiceAccount
+    namespace: staranto 
+    name: z-sa-weak
+
+    # - apiVersion: rbac.authorization.k8s.io/v1  
+    #   kind: RoleBinding
+    #   metadata:
+    #     name: z-rb-strong
+    #   roleRef:
+    #     kind: ClusterRole
+    #     apiGroup: rbac.authorization.k8s.io
+    #     name: admin
+    #   subjects:
+    #   - kind: ServiceAccount
+    #     namespace: staranto 
+    #     name: z-sa-weak
+
+# It appears that bindings to roles that don't exist
+# are silently ignored.
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    name: z-rb-role-does-not-exist
+  roleRef:
+    kind: Role
+    apiGroup: rbac.authorization.k8s.io
+    name: role-does-not-exist
+    namespace: staranto
+  subjects:
+  - kind: ServiceAccount
+    namespace: staranto
+    name: z-sa-weak
+
+# When the only binding that is in place is to system:basic-user
+# oc auth can-i delete pod will fail.  But by binding to this 
+# role, it should work.
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    name: z-r-can-delete-pod
+    namespace: staranto
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - pods
+    - pods/status
+    verbs:
+    - delete
+
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    name: z-rb-can-delete-pod
+  roleRef:
+    kind: Role
+    apiGroup: rbac.authorization.k8s.io
+    name: z-r-can-delete-pod
+    namespace: staranto
+  subjects:
+  - kind: ServiceAccount
+    namespace: staranto
+    name: z-sa-weak
+
+# What happen if there is a role against pods that then
+# explicitly doesn't mention the delete verb?
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    name: z-r-can-only-list-pod
+    namespace: staranto
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - pods
+    - pods/status
+    verbs:
+    - list
+
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    name: z-rb-can-only-list-pod
+  roleRef:
+    kind: Role
+    apiGroup: rbac.authorization.k8s.io
+    name: z-r-can-delete-pod
+    namespace: staranto
+  subjects:
+  - kind: ServiceAccount
+    namespace: staranto
+    name: z-sa-weak
+
+...
