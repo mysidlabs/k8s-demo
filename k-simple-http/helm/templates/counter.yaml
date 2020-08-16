@@ -1,0 +1,65 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counter
+spec:
+  selector:
+    matchLabels:
+      {{ .Values.domain }}/app: "{{ .Values.appName }}"
+  template:
+    metadata:
+      labels:
+        {{ .Values.domain }}/app: {{ .Values.appName }}
+        {{ .Values.domain }}/app.{{ .Values.appName }}.role: counter
+    spec:
+      containers:
+      - name: counter
+        image: staranto/simple-http-counter:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8181
+          name: http
+        resources:
+          requests: 
+            cpu: "128m"
+            memory: "256Mi"
+          limits:
+            cpu: "256m"
+            memory: "384Mi"
+        env:
+        - name: NODE
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        livenessProbe:
+          httpGet:
+            path: /live
+            port: 8282
+          initialDelaySeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8282
+          initialDelaySeconds: 3
+      restartPolicy: Always
+  replicas: 1
+...
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: counter
+  labels:
+    {{ .Values.domain }}/app: simple-http
+    {{ .Values.domain }}/app.simple-http.role: counter-service
+spec:
+  selector:
+    {{ .Values.domain }}/app.simple-http.role: counter
+  # type: LoadBalancer
+  # externalTrafficPolicy: Local
+  ports:
+  - name: http
+    port: 8181
+    targetPort: 8181
+...

@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
   - name: b-one
-    image: staranto/k8s-demo-runner:1.2.1
+    image: staranto/k8s-demo-runner:1.2.6
     imagePullPolicy: Always
     env:
     - name: KUBERNETES_NS
@@ -18,7 +18,7 @@ spec:
           fieldPath: metadata.namespace
     volumeMounts:
     - name: b-vol
-      mountPath: "/var/run/demo"
+      mountPath: "/tmp"
   terminationGracePeriodSeconds: 1
   volumes:
     - name: b-vol
