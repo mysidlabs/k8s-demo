@@ -1,0 +1,7 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: dynamic-nfs
+provisioner: taranto.dev/nfs
+parameters:
+  archiveOnDelete: "false"

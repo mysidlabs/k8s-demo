@@ -1,0 +1,36 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nfs-client-provisioner
+spec:
+  selector:
+    matchLabels:
+      app: nfs-client-provisioner
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nfs-client-provisioner
+    spec:
+      serviceAccountName: nfs-client-provisioner
+      containers:
+        - name: nfs-client-provisioner
+          image: quay.io/external_storage/nfs-client-provisioner:latest
+          volumeMounts:
+            - name: b-vol
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: taranto.dev/nfs
+            - name: NFS_SERVER
+              value: nfs-a.0.taranto.dev
+            - name: NFS_PATH
+              value: /srv/nfs
+      volumes:
+        - name: b-vol
+          persistentVolumeClaim:
+            claimName: b-pvc
+
+
