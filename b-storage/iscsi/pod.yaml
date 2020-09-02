@@ -1,0 +1,27 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: b-pod
+  labels:
+    taranto.dev/app: k8s-demo
+    taranto.dev/section: b-storage
+spec:
+  containers:
+  - name: b-one
+    image: staranto/k8s-demo-runner:1.2.6
+    imagePullPolicy: Always
+    env:
+    - name: KUBERNETES_NS
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.namespace
+    volumeMounts:
+    - name: b-vol
+      mountPath: "/tmp"
+  terminationGracePeriodSeconds: 1
+  volumes:
+    - name: b-vol
+      persistentVolumeClaim:
+        claimName: pvc-iscsi
+...
