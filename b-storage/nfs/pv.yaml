@@ -1,15 +1,15 @@
 ---
-kind: PersistentVolume
 apiVersion: v1
+kind: PersistentVolume
 metadata:
-  name: b-pv
+  name: pv-nfs
 spec:
   capacity:
-    storage: 5Gi
-  nfs:
-    server: nfs-a.0.taranto.dev
-    path: /srv/nfs
+    storage: 1Gi
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: nfs-a.0.taranto.dev
+    path: /srv/nfs
 ...
