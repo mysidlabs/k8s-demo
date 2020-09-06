@@ -1,0 +1,29 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: a-pod
+  labels:
+    taranto.dev/app: k8s-demo
+    taranto.dev/section: a-core
+spec:
+  initContainers:
+  - name: a-init
+    image: busybox
+    command: ['sh', '-c', "echo init && touch /var/run/a-init && sleep 3" ]
+    volumeMounts:
+    - name: shared
+      mountPath: "/var/run"
+  containers:
+  - name: a-one
+    image: staranto/k8s-demo-runner:latest
+    imagePullPolicy: Always
+    volumeMounts:
+    - name: shared
+      mountPath: "/var/run"
+
+  terminationGracePeriodSeconds: 1
+  volumes:
+  - name: shared
+    emptyDir: {}
+...
