@@ -18,8 +18,7 @@ spec:
     spec:
       containers:
       - name: a-one
-        image: bash
-        imagePullPolicy: IfNotPresent
-        command: [ "top" ]
+        image: staranto/k8s-demo-runner:latest
+        imagePullPolicy: Always
       terminationGracePeriodSeconds: 0
 ...

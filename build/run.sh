@@ -2,7 +2,7 @@
 
 trap 'echo trapped; exit' TERM
 
-odir="/var/run"
+odir="/tmp"
 
 [[ ! -z "${KUBERNETES_NS}" ]] && ns="${KUBERNETES_NS}/" || ns=""
 
