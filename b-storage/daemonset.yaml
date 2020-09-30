@@ -1,30 +1,24 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
+  name: b-ds
   labels:
     taranto.dev/app: k8s-demo
     taranto.dev/section: b-storage
-  name: b-dep
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      taranto.dev/app: b-dep
+      taranto.dev/app: k8s-demo
   template:
     metadata:
       labels:
-        taranto.dev/app: b-dep
+        taranto.dev/app: k8s-demo
     spec:
       containers:
       - name: b-one
         image: staranto/k8s-demo-runner:latest
         imagePullPolicy: Always
-        env:
-        - name: KUBERNETES_NS
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
         volumeMounts:
           - mountPath: "/tmp"
             name: b-vol
@@ -33,4 +27,11 @@ spec:
         - name: b-vol
           persistentVolumeClaim:
             claimName: b-pvc
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-role.kubernetes.io/worker
+                operator: Exists
 ...
