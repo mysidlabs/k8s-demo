@@ -10,17 +10,17 @@ spec:
   initContainers:
   - name: a-init
     image: busybox
-    command: ['sh', '-c', "echo init && touch /tmp/a-init && sleep 3" ]
+    command: ['sh', '-c', "echo init && touch /var/run/a-init && sleep 3" ]
     volumeMounts:
     - name: shared
-      mountPath: "/tmp"
+      mountPath: "/var/run"
   containers:
   - name: a-one
     image: staranto/k8s-demo-runner:latest
     imagePullPolicy: Always
     volumeMounts:
     - name: shared
-      mountPath: "/tmp"
+      mountPath: "/var/run"
 
   terminationGracePeriodSeconds: 1
   volumes:
