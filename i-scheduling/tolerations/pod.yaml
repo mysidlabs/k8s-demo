@@ -1,0 +1,23 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: i-pod
+  labels:
+    taranto.dev/app: k8s-demo
+    taranto.dev/section: i-scheduling
+spec:
+  containers:
+  - name: i-one
+    image: staranto/k8s-demo-runner:latest
+    imagePullPolicy: Always
+  nodeSelector:
+    taranto.dev/section: i-scheduling
+  tolerations:
+  - key: "taranto.dev/section"
+    operator: "Equal"
+    value: "i-scheduling"
+    effect: "NoSchedule"
+
+  terminationGracePeriodSeconds: 1
+...

@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: i-ds
+  labels:
+    taranto.dev/app: k8s-demo
+    taranto.dev/section: i-scheduling
+spec:
+  selector:
+    matchLabels:
+      taranto.dev/example: i-ds
+  template:
+    metadata:
+      labels:
+        taranto.dev/example: i-ds
+    spec:
+      containers:
+      - name: i-one
+        image: staranto/k8s-demo-runner:latest
+        imagePullPolicy: Always
+      tolerations:
+      - key: "taranto.dev/section"
+        operator: "Equal"
+        value: "i-scheduling"
+        effect: "NoSchedule"
+      terminationGracePeriodSeconds: 0
+...

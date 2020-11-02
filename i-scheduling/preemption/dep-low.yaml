@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: i-dep-low
+  labels:
+    taranto.dev/app: k8s-demo
+    taranto.dev/section: i-scheduling
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      taranto.dev/example: i-scheduling-preemption
+  template:
+    metadata:
+      labels:
+        taranto.dev/example: i-scheduling-preemption
+        taranto.dev/pc: low
+    spec:
+      containers:
+      - name: i-low 
+        image: staranto/k8s-demo-runner:latest
+        imagePullPolicy: Always
+      nodeSelector:
+        priorityclass: low
+      priortyClassName: pc-low
+      resources:
+        requests:
+          cpu: "2000m"
+          memory: "1024Mi"
+      terminationGracePeriodSeconds: 0
+...
