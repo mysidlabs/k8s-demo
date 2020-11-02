@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: a-stateful
+  labels:
+    taranto.dev/app: k8s-demo
+    taranto.dev/section: a-core
+spec:
+  replicas: 2
+  podManagementPolicy: Parallel
+  selector:
+    matchLabels:
+      taranto.dev/example: a-dep
+  template:
+    metadata:
+      labels:
+        taranto.dev/example: a-dep
+    spec:
+      containers:
+      - name: a-one
+        image: staranto/k8s-demo-runner:latest
+        imagePullPolicy: Always
+      terminationGracePeriodSeconds: 1
+...
