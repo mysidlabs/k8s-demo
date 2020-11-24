@@ -5,11 +5,11 @@ metadata:
   name: pv-nfs
 spec:
   capacity:
-    storage: 1Gi
+    storage: 1G
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: nfs-a.0.taranto.dev
-    path: /srv/nfs
+    path: /srv/blue/1
 ...
