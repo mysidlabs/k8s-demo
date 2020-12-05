@@ -6,6 +6,7 @@ metadata:
   labels:
     taranto.dev/app: k8s-demo
     taranto.dev/section: a-core
+    taranto.dev/example: a-dep
 spec:
   replicas: 3
   selector:

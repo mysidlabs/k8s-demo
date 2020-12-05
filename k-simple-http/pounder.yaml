@@ -25,7 +25,7 @@ spec:
       containers:
       - name: pounder
         image: staranto/simple-http-pounder:latest
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         command:
         - /tmp/pounder
         - http://counter:8181
@@ -33,7 +33,7 @@ spec:
         resources:
           limits:
             cpu: "64m"
-            memory: "32Mi"
+            memory: "64Mi"
         lifecycle:
           preStop:
             exec:
@@ -48,7 +48,7 @@ spec:
         - name: PROBE
           value: "1"
         - name: FAILCEILING
-          value: "10240"
+          value: "4096"
         - name: NODE
           valueFrom:
             fieldRef:
