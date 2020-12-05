@@ -1,0 +1,13 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  labels:
+    local.storage.openshift.io/owner-name: b-local-disks
+    local.storage.openshift.io/owner-namespace: openshift-local-storage
+  name: b-local
+  resourceVersion: "745338"
+  selfLink: /apis/storage.k8s.io/v1/storageclasses/b-local-sc
+  uid: f9fad072-0c39-4e7a-95d6-044433dff929
+provisioner: kubernetes.io/no-provisioner
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer

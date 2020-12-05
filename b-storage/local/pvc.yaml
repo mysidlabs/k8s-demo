@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: b-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: b-local
+  resources:
+    requests:
+      storage: 10M
+    limits:
+      storage: 20M
+...
