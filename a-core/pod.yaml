@@ -12,4 +12,5 @@ spec:
     image: staranto/k8s-demo-runner:latest
     imagePullPolicy: Always
   terminationGracePeriodSeconds: 1
+
 ...
