@@ -1,4 +1,6 @@
 ---
+x-vars:
+  image: &img staranto/k8s-demo-runner:latest
 kind: Pod
 apiVersion: v1
 metadata:
@@ -9,8 +11,7 @@ metadata:
 spec:
   containers:
   - name: a-one
-    image: staranto/k8s-demo-runner:latest
+    image: *img 
     imagePullPolicy: Always
   terminationGracePeriodSeconds: 1
-
 ...
