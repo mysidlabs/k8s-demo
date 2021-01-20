@@ -27,9 +27,9 @@ spec:
     spec:
       nodeSelector:
         # Edit this value.  kubectl get nodes -L kubernetes.io/hostname
-        kubernetes.io/hostname: k3d-1-worker-2
+        kubernetes.io/hostname: worker-2.ocpa
       containers:
       - name: e-one
-        image: staranto/k8s-demo-runner:latest
-        imagePullPolicy: IfNotPresent
+        image: staranto/k8s-demo-runner:0
+        imagePullPolicy: Always
 ...
