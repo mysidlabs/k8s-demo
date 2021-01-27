@@ -11,8 +11,8 @@ spec:
   csi:
     driver: smb.csi.k8s.io
     volumeAttributes:
-      source: //truenas.0.taranto.dev/k8s-demo
-    volumeHandle: k8s-demo
+      source: //truenas.0.taranto.dev/k8s-demo-smb
+    volumeHandle: cifs-demo
     nodeStageSecretRef:
       name: ktaranto-credentials
       namespace: k8s-demo
