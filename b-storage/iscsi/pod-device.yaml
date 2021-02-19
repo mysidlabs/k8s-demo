@@ -9,16 +9,18 @@ metadata:
 spec:
   containers:
   - name: b-one
-    image: staranto/k8s-demo-runner:latest
+    #image: staranto/k8s-demo-runner:1.2.6
+    image: debian
+    command: [ "sleep", "30000" ]
     imagePullPolicy: Always
     env:
     - name: KUBERNETES_NS
       valueFrom:
         fieldRef:
           fieldPath: metadata.namespace
-    volumeMounts:
+    deviceMounts:
     - name: b-vol
-      mountPath: "/tmp"
+      devicePath: "/dev/sdz"
   terminationGracePeriodSeconds: 1
   volumes:
     - name: b-vol

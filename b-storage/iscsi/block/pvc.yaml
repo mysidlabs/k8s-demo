@@ -11,5 +11,5 @@ spec:
       storage: 10M
     limits:
       storage: 20M
-  volumeMode: Filesystem
+  volumeMode: Block
 ...

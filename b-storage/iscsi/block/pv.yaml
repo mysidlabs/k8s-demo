@@ -8,12 +8,11 @@ spec:
     - ReadWriteOnce
   capacity:
     storage: 2Gi
-  persistentVolumeReclaimPolicy: Retain
   iscsi:
      targetPortal: 192.168.86.2:3260
-     iqn: iqn.2021-01.dev.taranto:itest
-     lun: 0
+     iqn: iqn.2021-01.dev.taranto:iscsi
+     lun: 1
      fsType: ext4
-     readOnly: false
-     chapAuthSession: false
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Block
 ...

@@ -5,11 +5,10 @@ metadata:
   labels:
     type: local
 spec:
-  #storageClassName: b-sc
   capacity:
     storage: 1Gi
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: "/tmp/kube"
+    path: "/tmp/hostpath"
 
