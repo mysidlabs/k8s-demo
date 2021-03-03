@@ -10,5 +10,5 @@ spec:
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: "/tmp/hostpath"
+    path: "/mnt/hostpath"
 

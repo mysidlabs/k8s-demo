@@ -8,7 +8,7 @@ metadata:
     taranto.dev/tier: web
   name: d-web
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       taranto.dev/example: d-web
@@ -19,11 +19,35 @@ spec:
         taranto.dev/example: d-web
     spec:
       containers:
-      - name: web
-        image: nginx
+      - name: counter
+        image: staranto/simple-http-counter:latest
+        imagePullPolicy: IfNotPresent
         ports:
-        - name: http
-          containerPort: 80
+        - containerPort: 8181
+          name: http8181
+        resources:
+          requests: 
+            cpu: "128m"
+            memory: "256Mi"
+          limits:
+            cpu: "256m"
+            memory: "384Mi"
+        env:
+        - name: NODE
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        livenessProbe:
+          httpGet:
+            path: /live
+            port: 8282
+          initialDelaySeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8282
+          initialDelaySeconds: 3
+      restartPolicy: Always
 ...
 ---
 kind: Service
@@ -39,7 +63,7 @@ spec:
   ports:
   - protocol: TCP
     port: 81
-    targetPort: http
+    targetPort: http8181
   type: LoadBalancer
 ...
 

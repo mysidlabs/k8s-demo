@@ -1,0 +1,86 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counter
+spec:
+  selector:
+    matchLabels:
+      taranto.dev/app: simple-http
+  template:
+    metadata:
+      labels:
+        taranto.dev/app: simple-http
+        taranto.dev/app.simple-http.role: counter
+    spec:
+      containers:
+      - name: counter
+        image: staranto/simple-http-counter:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8181
+          name: http
+        resources:
+          requests: 
+            cpu: "128m"
+            memory: "256Mi"
+          limits:
+            cpu: "256m"
+            memory: "384Mi"
+        env:
+        - name: NODE
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        livenessProbe:
+          httpGet:
+            path: /live
+            port: 8282
+          initialDelaySeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8282
+          initialDelaySeconds: 3
+      restartPolicy: Always
+  replicas: 1
+...
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: counter
+  labels:
+    taranto.dev/app: simple-http
+    taranto.dev/app.simple-http.role: counter-service
+spec:
+  selector:
+    taranto.dev/app.simple-http.role: counter
+  type: LoadBalancer
+  # externalTrafficPolicy: Local
+  ports:
+  - name: svchttp       # Internal service name
+    port: 8080          # Port exposed by service
+    targetPort: 8181    # Port exposed by pod
+...
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: counter-ingress
+  annotations:
+    ingress.kubernetes.io/secure-backends: "true"
+    nginx.ingress.kubernetes.io/secure-backends: "true"
+    ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
+    kubernetes.io/ingress.class: nginx
+    nginx.org/ssl-services: "counter"
+spec:
+  rules:
+    - host: "counter.mysidlabs.com"
+      https:
+        paths:
+        - backend:
+            serviceName: counter
+            servicePort: 8181

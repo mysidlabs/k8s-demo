@@ -16,10 +16,6 @@ spec:
       valueFrom:
         fieldRef:
           fieldPath: metadata.namespace
-    securityContext:
-      capabilities:
-        add:
-          - MKNOD
     volumeMounts:
     - name: b-vol
       mountPath: "/tmp"
