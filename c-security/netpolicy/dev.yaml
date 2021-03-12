@@ -1,0 +1,64 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pounder
+  namespace: np-dev
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25% 
+  selector:
+    matchLabels:
+      taranto.dev/app.simple-http.role: pounder
+  template:
+    metadata:
+      labels:
+        taranto.dev/app: simple-http
+        taranto.dev/app.simple-http.role: pounder
+      annotations:
+        config: ""
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: pounder
+        image: staranto/simple-http-pounder:latest
+        imagePullPolicy: IfNotPresent
+        command:
+        - /tmp/pounder
+        - http://counter.np-prod.svc.cluster.local:8181
+        - yellow
+        resources:
+          limits:
+            cpu: "64m"
+            memory: "64Mi"
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/sh","-c","killall pounder; while killall -0 pounder; do sleep 1; done"]
+        env:
+        - name: COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: config-env
+              key: COLOR
+              optional: true
+        - name: PROBE
+          value: "1"
+        - name: FAILCEILING
+          value: "4096"
+        - name: NODE
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        livenessProbe:
+          httpGet:
+            path: /live
+            port: 8282
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          failureThreshold: 3
+...
