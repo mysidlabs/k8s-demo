@@ -8,7 +8,7 @@ spec:
     kind: Deployment
     name: stress
   minReplicas: 1
-  maxReplicas: 8 
+  maxReplicas: 5 
   targetCPUUtilizationPercentage: 25
   behavior:
     scaleDown:
@@ -18,7 +18,7 @@ spec:
         value: 30
         periodSeconds: 20
     scaleUp:
-      stabilizationWindowSeconds: 120
+      stabilizationWindowSeconds: 30
       policies:
       - type: Percent
         value: 20

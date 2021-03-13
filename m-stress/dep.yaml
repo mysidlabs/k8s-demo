@@ -14,11 +14,11 @@ spec:
     spec:
       containers:
       - name: stress
-        image: staranto/stress:2.1.6
+        image: staranto/stress:2.1.10
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-          name: http8080
+          name: pod8080
         resources:
           requests: 
             cpu: "256m"
@@ -45,9 +45,9 @@ spec:
   selector:
     taranto.dev/app: stress
   ports:
-  - name: http80
+  - name: svc80
     port: 80
-    targetPort: 8080
+    targetPort: pod8080
 ...
 ---
 apiVersion: route.openshift.io/v1
@@ -60,10 +60,7 @@ metadata:
 spec:
   host: ""
   port:
-    targetPort: http80
-    #  tls:
-    #    insecureEdgeTerminationPolicy: Allow
-    #    termination: edge
+    targetPort: svc80
   to:
     kind: Service
     name: stress
