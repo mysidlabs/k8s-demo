@@ -1,31 +1,66 @@
 #!/bin/bash
 
-sleeper() {
-    RANDOM=$(date +%s%N | cut -b10-19)
-    sleep "0.${RANDOM}"
-}
-
 loadit() {
-    echo -e "${GREEN}Starting thread ${1}...${RESET}"
-    for j in $(seq 1 "${2}"); do
-        sleeper
-        echo -e "   ${GREEN}Thread ${1} instance ${j}...${RESET}"
-        curl http://${h}/cgi-bin/stress.sh
-        echo -e "${RESET}"
+    echo "Starting thread ${1}..."
+    for j in $(seq 1 "${COUNT}"); do
+        [[ -f ${KILLER} ]] && echo "Draining ${1}..." && return
+        echo "   Thread ${1} instance ${j}..."
+        curl http://${HOST}/cgi-bin/stress.sh?${TIME}/${LOAD}
     done
-    echo -e "${RED}Finished thread ${1}${RESET}"
+    echo "Finished thread ${1}"
 }
 
-RED='\033[00;31m'
-GREEN='\033[00;32m'
-YELLOW='\033[00;33m'
-RESET='\033[0m'
+KILLER=./killer
 
-h=$(oc get route/stress --template {{.spec.host}})
+while [[ $# -gt 0 ]]; do
+    k="${1}"
+    case ${k} in
+        --stop)
+            touch ${KILLER}
+            exit
+            ;;
+        -h|--host)
+            HOST="${2}"
+            shift
+            shift
+            ;;
+        -i|--iter)
+            ITER="${2}"
+            shift
+            shift
+            ;;
+        -c|--count)
+            COUNT="${2}"
+            shift
+            shift
+            ;;
+        -t|--time)
+            TIME="${2}"
+            shift
+            shift
+            ;;
+        -l|--load)
+            LOAD="${2}"
+            shift
+            shift
+            ;;
+        *)
+            echo "Unknown argument: $0 $*"
+            exit 1
+    esac
+done
 
-for i in $(seq 1 "$1"); do
-    loadit "$i" "$2" &
+COUNT=${COUNT:-10}
+HOST=${HOST:-$(oc get route/stress --template "{{.spec.host}}")}
+ITER=${ITER:-5}
+LOAD=${LOAD:-40}
+TIME=${TIME:-10}
+
+for i in $(seq 1 "${ITER}"); do
+    loadit "$i" &
 done
 
 wait
+
+[[ -f ${KILLER} ]] && rm ${KILLER}
 
