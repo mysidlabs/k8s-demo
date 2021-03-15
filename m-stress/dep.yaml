@@ -14,18 +14,18 @@ spec:
     spec:
       containers:
       - name: stress
-        image: staranto/stress:2.1.10
+        image: staranto/stress:2.1.16
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
           name: pod8080
         resources:
           requests: 
+            cpu: "128m"
+            memory: "128Mi"
+          limits:
             cpu: "256m"
             memory: "256Mi"
-          limits:
-            cpu: "512m"
-            memory: "512Mi"
         env:
         - name: NODE
           valueFrom:
