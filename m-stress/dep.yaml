@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: stress
-        image: staranto/stress:2.1.16
+        image: staranto/stress:2.1.23
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -48,22 +48,4 @@ spec:
   - name: svc80
     port: 80
     targetPort: pod8080
-...
----
-apiVersion: route.openshift.io/v1
-kind: Route
-metadata:
-  labels:
-    taranto.dev/app: stress
-    taranto.dev/app.stress.role: stress-route
-  name: stress
-spec:
-  host: ""
-  port:
-    targetPort: svc80
-  to:
-    kind: Service
-    name: stress
-    weight: 100
-  wildcardPolicy: None
 ...
