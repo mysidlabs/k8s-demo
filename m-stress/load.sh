@@ -10,6 +10,20 @@ loadit() {
     echo "Finished thread ${1}"
 }
 
+gethost() {
+    # Look for ingress first since it's available on all distros and
+    # will fail much faster on OCP if an instance is not found and
+    # a route is being used.
+    local h=$(oc get ingress/stress -o 'jsonpath={.spec.rules[0].host}' 2> /dev/null)
+    if [[ "${h}" == "" ]]; then
+        h=$(oc get route/stress -o 'jsonpath={.spec.host}')
+        if [[ "${h}" == "" ]]; then
+            h=localhost
+        fi
+    fi
+    echo "${h}"
+}
+
 KILLER=./killer
 [[ -f "${KILLER}" ]] && rm ${KILLER}
 
@@ -57,11 +71,13 @@ while [[ $# -gt 0 ]]; do
 done
 
 COUNT=${COUNT:-10}
-HOST=${HOST:-$(oc get route/stress --template "{{.spec.host}}")}
+HOST=${HOST:-$(gethost)}
 ITER=${ITER:-5}
 LOAD=${LOAD:-40}
 SLEEP=${SLEEP:-0}
 TIME=${TIME:-10}
+
+echo "Stressing ${HOST}..."
 
 for i in $(seq 1 "${ITER}"); do
     loadit "$i" &
