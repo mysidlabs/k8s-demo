@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
   - name: b-one
-    image: staranto/k8s-demo-runner:1.3.3
+    image: staranto/k8s-demo-runner:2.0.0
     imagePullPolicy: IfNotPresent
     env:
     - name: KUBERNETES_NS

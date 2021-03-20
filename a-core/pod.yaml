@@ -1,6 +1,6 @@
 ---
 x-vars:
-  image: &img staranto/k8s-demo-runner:latest
+  image: &img staranto/k8s-demo-runner:2.0.0
 kind: Pod
 apiVersion: v1
 metadata:

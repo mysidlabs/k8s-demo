@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
     - name: a-one
-      image: staranto/k8s-demo-runner:latest
+      image: staranto/k8s-demo-runner:2.0.0
       env:
       - name: CID
         value: a-one
@@ -17,7 +17,7 @@ spec:
       - name: common-dir
         mountPath: /tmp
     - name: a-two
-      image: staranto/k8s-demo-runner:latest
+      image: staranto/k8s-demo-runner:2.0.0
       env:
       - name: CID
         value: a-two

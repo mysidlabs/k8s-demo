@@ -21,7 +21,7 @@ spec:
       terminationGracePeriodSeconds: 0
       containers:
       - name: e-one
-        image: staranto/k8s-demo-runner:latest
+        image: staranto/k8s-demo-runner:2.0.0
         imagePullPolicy: IfNotPresent
       affinity:
         nodeAffinity:

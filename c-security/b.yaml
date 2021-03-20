@@ -105,7 +105,7 @@ metadata:
   selfLink: /api/v1/namespaces/k8s-demo/pods/c-pod
 spec:
   containers:
-  - image: staranto/k8s-demo-runner:latest
+  - image: staranto/k8s-demo-runner:2.0.0
     imagePullPolicy: Always
     name: c-one
     resources: {}

@@ -17,7 +17,7 @@ objects:
   spec:
     containers:
     - name: b-one
-      image: staranto/k8s-demo-runner:1.2.6
+      image: staranto/ks8-demo-runner:2.0.0
       imagePullPolicy: Always
       env:
       - name: KUBERNETES_NS

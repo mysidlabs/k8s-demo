@@ -16,7 +16,7 @@ spec:
       mountPath: "/tmp"
   containers:
   - name: a-one
-    image: staranto/k8s-demo-runner:latest
+    image: staranto/k8s-demo-runner:2.0.0
     imagePullPolicy: Always
     volumeMounts:
     - name: shared

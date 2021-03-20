@@ -14,8 +14,9 @@ spec:
     spec:
       containers:
       - name: stress
-        image: staranto/stress:2.1.23
+        image: staranto/k8s-demo-runner:2.0.0-test
         imagePullPolicy: Always
+        command: [ "/run.sh", "stress" ]
         ports:
         - containerPort: 8080
           name: pod8080

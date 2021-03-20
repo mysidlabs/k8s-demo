@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
   - name: b-one
-    #image: staranto/k8s-demo-runner:1.2.6
+    #image: staranto/ks8-demo-runner:2.0.0
     image: debian
     command: [ "sleep", "30000" ]
     imagePullPolicy: Always

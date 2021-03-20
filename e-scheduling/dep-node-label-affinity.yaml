@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: e-one
-        image: staranto/k8s-demo-runner:latest
+        image: staranto/k8s-demo-runner:2.0.0
         imagePullPolicy: IfNotPresent
       nodeSelector:
         taranto.dev/cpu: high

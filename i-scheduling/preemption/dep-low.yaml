@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: i-low 
-        image: staranto/k8s-demo-runner:latest
+        image: staranto/k8s-demo-runner:2.0.0
         imagePullPolicy: Always
       nodeSelector:
         priorityclass: low

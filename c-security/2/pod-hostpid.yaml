@@ -10,7 +10,7 @@ spec:
   hostPID: true
   containers:
   - name: c-one
-    image: staranto/k8s-demo-runner:latest
+    image: staranto/k8s-demo-runner:2.0.0
     imagePullPolicy: Always
     securityContext:
       runAsUser: 3001
