@@ -1,12 +1,19 @@
-FROM bash
+FROM debian:sid
 
-RUN apk add -U tzdata && \
-  cp /usr/share/zoneinfo/America/New_York /etc/localtime && \
-  echo "America/New_York" > /etc/timezone && \
-  apk del tzdata && \
-  apk add socat stress-ng
+ENV  DEBIAN_FRONTEND=noninteractice
+RUN  apt-get update && \
+     apt-get install -y lighttpd procps stress-ng tzdata wget && \
+     rm -rf /var/lib/apt/lists/* 
 
-COPY *.sh /
+RUN  unlink /etc/localtime && \
+     ln -s /usr/share/zoneinfo/America/New_York /etc/localtime
 
-ENTRYPOINT /run.sh
+RUN  rm /etc/init.d/lighttpd && \
+     lighttpd-enable-mod cgi && \
+     mkdir -p /tmp/log/lighttpd
 
+COPY run.sh /
+COPY lighttpd.conf /etc/lighttpd/lighttpd.conf
+COPY stress.sh /usr/lib/cgi-bin
+
+ENTRYPOINT ["/run.sh"]

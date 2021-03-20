@@ -1,14 +1,22 @@
 #! /usr/bin/env bash
 
-echo ${@}
+cd /tmp
 
-if [[ "$1" == "server" ]]; then
-    socat -u tcp-l:7777,fork system:/stress.sh
-    #nc -l -p 7777 -e /stress.sh
-else
-    stress-ng --metrics --cpu 0 --cpu-load 40 --timeout 10s
+declare -a params
+saveIFS=$IFS
+IFS="/"
+params=($QUERY_STRING)
+IFS=$saveIFS
+
+timeout="${params[0]:-10}"
+load="${params[1]:-40}"
+sleep="${params[2]:-0}"
+
+if [[ "${sleep}" != "0" ]]; then
+    s=$(( ( RANDOM % ${sleep} ) + 1 ))
+    echo "Sleeping ${s}..."
+    sleep ${s}s
 fi
 
-
-
+stress-ng --metrics --cpu 0 --cpu-load ${load} --timeout ${timeout}s 2>&1
 
