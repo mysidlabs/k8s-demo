@@ -10,7 +10,7 @@ spec:
   containers:
   - name: b-one
     image: staranto/ks8-demo-runner:2.0.0
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
     env:
     - name: KUBERNETES_NS
       valueFrom:

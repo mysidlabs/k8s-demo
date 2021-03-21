@@ -10,7 +10,7 @@ spec:
   containers:
   - name: c-one
     image: staranto/k8s-demo-runner:2.0.0
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
     securityContext:
       runAsUser: 3001
       runAsGroup: 3001

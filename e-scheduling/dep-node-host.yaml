@@ -31,5 +31,5 @@ spec:
       containers:
       - name: e-one
         image: staranto/k8s-demo-runner:0
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
 ...

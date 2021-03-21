@@ -20,7 +20,7 @@ spec:
       containers:
       - name: a-one
         image: staranto/k8s-demo-runner:2.0.0
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
         - name: CID
           value: a-one
@@ -29,7 +29,7 @@ spec:
           mountPath: /tmp
       - name: a-two
         image: staranto/k8s-demo-runner:2.0.0
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
         - name: CID
           value: a-two
@@ -38,7 +38,7 @@ spec:
           mountPath: /tmp
       - name: a-three
         image: staranto/k8s-demo-runner:2.0.0
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
         - name: CID
           value: a-three

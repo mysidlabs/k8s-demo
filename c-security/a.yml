@@ -127,7 +127,7 @@ spec:
   - command:
     - top
     image: staranto/k8s-demo-user
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
     name: c-one
     resources: {}
     securityContext:

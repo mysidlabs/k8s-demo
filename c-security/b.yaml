@@ -106,7 +106,7 @@ metadata:
 spec:
   containers:
   - image: staranto/k8s-demo-runner:2.0.0
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
     name: c-one
     resources: {}
     securityContext:

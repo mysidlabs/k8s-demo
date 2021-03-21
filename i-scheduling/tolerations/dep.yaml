@@ -19,7 +19,7 @@ spec:
       containers:
       - name: i-one
         image: staranto/k8s-demo-runner:2.0.0
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
       nodeSelector:
         taranto.dev/section: i-scheduling
       tolerations:

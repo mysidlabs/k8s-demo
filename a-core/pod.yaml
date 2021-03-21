@@ -12,6 +12,6 @@ spec:
   containers:
   - name: a-one
     image: *img 
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
   terminationGracePeriodSeconds: 1
 ...

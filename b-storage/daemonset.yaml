@@ -18,7 +18,7 @@ spec:
       containers:
       - name: b-one
         image: staranto/k8s-demo-runner:2.0.0
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         volumeMounts:
           - mountPath: "/tmp"
             name: b-vol

@@ -17,7 +17,7 @@ spec:
   containers:
   - name: a-one
     image: staranto/k8s-demo-runner:2.0.0
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
     volumeMounts:
     - name: shared
       mountPath: "/tmp"

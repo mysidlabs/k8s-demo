@@ -18,7 +18,7 @@ spec:
       containers:
       - name: i-one
         image: staranto/k8s-demo-runner:2.0.0
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
       tolerations:
       - key: "taranto.dev/section"
         operator: "Equal"

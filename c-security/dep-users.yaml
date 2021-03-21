@@ -18,7 +18,7 @@ spec:
       containers:
       - name: c-katy
         image: staranto/k8s-demo-user
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         command:
         - top
         securityContext:
@@ -26,7 +26,7 @@ spec:
           runAsGroup: 3001
       - name: c-root
         image: staranto/k8s-demo-user
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         command:
         - top
         securityContext:
@@ -35,7 +35,7 @@ spec:
           privileged: true
       - name: c-none
         image: staranto/k8s-demo-user
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         command:
         - top
 ...

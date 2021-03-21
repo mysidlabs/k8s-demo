@@ -12,7 +12,7 @@ spec:
     #image: staranto/ks8-demo-runner:2.0.0
     image: debian
     command: [ "sleep", "30000" ]
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
     env:
     - name: KUBERNETES_NS
       valueFrom:
