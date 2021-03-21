@@ -12,10 +12,19 @@ spec:
       labels:
         taranto.dev/app: stress
     spec:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+            - key: taranto.dev/app
+              operator: in
+              values:
+              - stress
+            topologyKey: "kubernetes.io/hostname"
       containers:
       - name: stress
         image: staranto/k8s-demo-runner:2.0.0-test
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         command: [ "/run.sh", "stress" ]
         ports:
         - containerPort: 8080
@@ -27,12 +36,8 @@ spec:
           limits:
             cpu: "256m"
             memory: "256Mi"
-        env:
-        - name: NODE
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
       restartPolicy: Always
+      terminationGracePeriodSeconds: 1
   replicas: 1
 ...
 ---
