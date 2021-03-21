@@ -30,10 +30,6 @@ KILLER=./killer
 while [[ $# -gt 0 ]]; do
     k="${1}"
     case ${k} in
-        --stop)
-            touch ${KILLER}
-            exit
-            ;;
         -h|--host)
             HOST="${2}"
             shift
@@ -49,11 +45,6 @@ while [[ $# -gt 0 ]]; do
             shift
             shift
             ;;
-        -t|--time)
-            TIME="${2}"
-            shift
-            shift
-            ;;
         -l|--load)
             LOAD="${2}"
             shift
@@ -62,6 +53,36 @@ while [[ $# -gt 0 ]]; do
         -s|--sleep)
             SLEEP="${2}"
             shift
+            shift
+            ;;
+        --stop)
+            touch ${KILLER}
+            exit
+            ;;
+        -t|--time)
+            TIME="${2}"
+            shift
+            shift
+            ;;
+        @long)
+            COUNT=32
+            ITER=8
+            LOAD=66
+            TIME=20
+            shift
+            ;;
+        @short)
+            COUNT=8
+            ITER=4
+            LOAD=66
+            TIME=10
+            shift
+            ;;
+        @test)
+            COUNT=1
+            ITER=1
+            LOAD=1
+            TIME=1
             shift
             ;;
         *)
