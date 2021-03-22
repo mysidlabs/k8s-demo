@@ -7,8 +7,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: stress
-  minReplicas: 1
-  maxReplicas: 5 
+  minReplicas: 2
+  maxReplicas: 10 
   metrics:
   - type: Resource
     resource:
@@ -21,11 +21,11 @@ spec:
       stabilizationWindowSeconds: 30
       policies:
       - type: Percent
-        value: 30
+        value: 50
         periodSeconds: 20
     scaleUp:
       stabilizationWindowSeconds: 30
       policies:
       - type: Percent
-        value: 20
+        value: 50
         periodSeconds: 20
