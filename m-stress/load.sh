@@ -4,8 +4,8 @@ loadit() {
     echo "Starting thread ${1}..."
     for j in $(seq 1 "${COUNT}"); do
         [[ -f ${KILLER} ]] && echo "Draining ${1}..." && return
-        echo "   Thread ${1} instance ${j}..."
-        curl http://${HOST}/cgi-bin/stress.sh?${TIME}/${LOAD}/${SLEEP}
+        echo "Thread ${1} instance ${j}..."
+        curl http://${HOST}/cgi-bin/stress.sh?${TIME}/${LOAD}/${SLEEP}/${QUIET}
     done
     echo "Finished thread ${1}"
 }
@@ -35,11 +35,6 @@ while [[ $# -gt 0 ]]; do
             shift
             shift
             ;;
-        -i|--iter)
-            ITER="${2}"
-            shift
-            shift
-            ;;
         -c|--count)
             COUNT="${2}"
             shift
@@ -48,6 +43,10 @@ while [[ $# -gt 0 ]]; do
         -l|--load)
             LOAD="${2}"
             shift
+            shift
+            ;;
+        -q|--quiet)
+            QUIET="--quiet"
             shift
             ;;
         -s|--sleep)
@@ -59,29 +58,34 @@ while [[ $# -gt 0 ]]; do
             touch ${KILLER}
             exit
             ;;
-        -t|--time)
+        -t|--thread)
+            THREAD="${2}"
+            shift
+            shift
+            ;;
+        -x|--time)
             TIME="${2}"
             shift
             shift
             ;;
         @long)
-            COUNT=32
-            ITER=8
+            COUNT=16
             LOAD=66
-            TIME=20
+            THREAD=8
+            TIME=10
             shift
             ;;
         @short)
             COUNT=8
-            ITER=4
             LOAD=66
+            THREAD=4
             TIME=10
             shift
             ;;
         @test)
             COUNT=1
-            ITER=1
             LOAD=1
+            THREAD=1
             TIME=1
             shift
             ;;
@@ -93,14 +97,20 @@ done
 
 COUNT=${COUNT:-10}
 HOST=${HOST:-$(gethost)}
-ITER=${ITER:-5}
+THREAD=${THREAD:-5}
 LOAD=${LOAD:-40}
+QUIET=${QUIET:-"--metrics"}
 SLEEP=${SLEEP:-0}
 TIME=${TIME:-10}
 
+if (( ${TIME} >= 30 )); then
+    echo "Excessive --time will cause gateway timeout errors."
+    exit 1
+fi
+
 echo "Stressing ${HOST}..."
 
-for i in $(seq 1 "${ITER}"); do
+for i in $(seq 1 "${THREAD}"); do
     loadit "$i" &
 done
 
