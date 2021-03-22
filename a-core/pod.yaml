@@ -1,4 +1,6 @@
 ---
+x-vars:
+  image: &img mysidlabs/k8s-demo-runner:2.0.9
 kind: Pod
 apiVersion: v1
 metadata:
@@ -9,14 +11,7 @@ metadata:
 spec:
   containers:
   - name: a-one
-    image: mysidlabs/k8s-demo-runner:1.1.0
+    image: *img 
     imagePullPolicy: IfNotPresent
-    resources:
-      requests:
-        cpu: 75m
-        memory: 100Mi
-      limits:
-        cpu: 150m
-        memory: 150Mi
-terminationGracePeriodSeconds: 1
+  terminationGracePeriodSeconds: 1
 ...

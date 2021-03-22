@@ -1,0 +1,8 @@
+---
+commonLabels:
+  builtby: kustomize
+resources:
+  - job.yaml
+patches:
+  - job-patch.yaml
+...

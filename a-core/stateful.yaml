@@ -1,19 +1,21 @@
 ---
 apiVersion: apps/v1
-kind: DaemonSet
+kind: StatefulSet
 metadata:
-  name: a-ds
+  name: a-stateful
   labels:
     mysidlabs.com/app: k8s-demo
     mysidlabs.com/section: a-core
 spec:
+  replicas: 2
+  podManagementPolicy: Parallel
   selector:
     matchLabels:
-      mysidlabs.com/app: k8s-demo
+      mysidlabs.com/example: a-dep
   template:
     metadata:
       labels:
-        mysidlabs.com/app: k8s-demo
+        mysidlabs.com/example: a-dep
     spec:
       containers:
       - name: a-one

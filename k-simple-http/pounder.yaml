@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: pounder
 spec:
-  replicas: 2
+  replicas: 4
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -24,7 +24,7 @@ spec:
       terminationGracePeriodSeconds: 0
       containers:
       - name: pounder
-        image: mysidlabs/simple-http-pounder:0.1
+        image: mysidlabs/simple-http-pounder:latest
         imagePullPolicy: IfNotPresent
         command:
         - /tmp/pounder
@@ -33,7 +33,7 @@ spec:
         resources:
           limits:
             cpu: "64m"
-            memory: "32Mi"
+            memory: "64Mi"
         lifecycle:
           preStop:
             exec:
@@ -48,7 +48,7 @@ spec:
         - name: PROBE
           value: "1"
         - name: FAILCEILING
-          value: "2048"
+          value: "4096"
         - name: NODE
           valueFrom:
             fieldRef:

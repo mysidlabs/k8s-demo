@@ -1,0 +1,29 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: a-pod
+  labels:
+    mysidlabs.com/app: k8s-demo
+    mysidlabs.com/section: a-core
+spec:
+  initContainers:
+  - name: a-init
+    image: busybox
+    command: ['sh', '-c', "echo init && touch /tmp/a-init && sleep 3" ]
+    volumeMounts:
+    - name: shared
+      mountPath: "/tmp"
+  containers:
+  - name: a-one
+    image: mysidlabs/k8s-demo-runner:2.0.9
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+    - name: shared
+      mountPath: "/tmp"
+
+  terminationGracePeriodSeconds: 1
+  volumes:
+  - name: shared
+    emptyDir: {}
+...

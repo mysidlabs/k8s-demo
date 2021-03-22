@@ -7,11 +7,12 @@ metadata:
     mysidlabs.com/app.simple-http.role: counter-route
   name: counter
 spec:
-  # Empty provides a namespace-encoded URL.
   host: ""
-  path: "/get"
   port:
     targetPort: http
+  tls:
+    insecureEdgeTerminationPolicy: Allow
+    termination: edge
   to:
     kind: Service
     name: counter

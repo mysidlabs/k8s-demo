@@ -1,12 +1,9 @@
 ---
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: counter
 spec:
-  selector:
-    matchLabels:
-      mysidlabs.com/app: simple-http
   template:
     metadata:
       labels:
@@ -20,13 +17,9 @@ spec:
         ports:
         - containerPort: 8181
           name: http
-        resources:
-          requests: 
-            cpu: "128m"
-            memory: "256Mi"
-          limits:
-            cpu: "256m"
-            memory: "384Mi"
+        volumeMounts:
+        - name: vol-tz-config
+          mountPath: /etc/localtime
         env:
         - name: NODE
           valueFrom:
@@ -42,6 +35,10 @@ spec:
             path: /ready
             port: 8282
           initialDelaySeconds: 3
+      volumes:
+      - name: vol-tz-config
+        hostPath:
+          path: /usr/share/zoneinfo/America/New_York
       restartPolicy: Always
   replicas: 1
 ...
@@ -54,12 +51,12 @@ metadata:
     mysidlabs.com/app: simple-http
     mysidlabs.com/app.simple-http.role: counter-service
 spec:
-  selector:
-    mysidlabs.com/app.simple-http.role: counter
-  # type: LoadBalancer
-  # externalTrafficPolicy: Local
+  type: LoadBalancer
+  externalTrafficPolicy: Local
   ports:
   - name: http
     port: 8181
     targetPort: 8181
+  selector:
+    mysidlabs.com/app.simple-http.role: counter
 ...

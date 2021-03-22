@@ -6,12 +6,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      mysidlabs.com/app: simple-http
+      {{ .Values.domain }}/app: "{{ .Values.appName }}"
   template:
     metadata:
       labels:
-        mysidlabs.com/app: simple-http
-        mysidlabs.com/app.simple-http.role: counter
+        {{ .Values.domain }}/app: {{ .Values.appName }}
+        {{ .Values.domain }}/app.{{ .Values.appName }}.role: counter
     spec:
       containers:
       - name: counter
@@ -51,11 +51,11 @@ kind: Service
 metadata:
   name: counter
   labels:
-    mysidlabs.com/app: simple-http
-    mysidlabs.com/app.simple-http.role: counter-service
+    {{ .Values.domain }}/app: simple-http
+    {{ .Values.domain }}/app.simple-http.role: counter-service
 spec:
   selector:
-    mysidlabs.com/app.simple-http.role: counter
+    {{ .Values.domain }}/app.simple-http.role: counter
   # type: LoadBalancer
   # externalTrafficPolicy: Local
   ports:

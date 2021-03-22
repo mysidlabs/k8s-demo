@@ -1,0 +1,60 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stress
+spec:
+  selector:
+    matchLabels:
+      mysidlabs.com/app: stress
+  template:
+    metadata:
+      labels:
+        mysidlabs.com/app: stress
+    spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            mysidlabs.com/app: stress
+      containers:
+      - name: stress
+        image: mysidlabs/k8s-demo-runner:2.0.9
+        imagePullPolicy: IfNotPresent
+        command: [ "/run.sh", "stress" ]
+        ports:
+        - containerPort: 8080
+          name: pod8080
+        env:
+        - name: NODE
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        resources:
+          requests: 
+            cpu: "512m"
+            memory: "512Mi"
+          limits:
+            cpu: "1024m"
+            memory: "1024Mi"
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 1
+  replicas: 1
+...
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stress
+  labels:
+    mysidlabs.com/app: stress
+spec:
+  selector:
+    mysidlabs.com/app: stress
+  ports:
+  - name: svc80
+    port: 80
+    targetPort: pod8080
+...

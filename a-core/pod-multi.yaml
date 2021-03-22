@@ -9,14 +9,7 @@ metadata:
 spec:
   containers:
     - name: a-one
-      image: mysidlabs/k8s-demo-runner:1.1.0
-      resources:
-        requests:
-          cpu: 75m
-          memory: 100Mi
-        limits:
-          cpu: 150m
-          memory: 150Mi
+      image: mysidlabs/k8s-demo-runner:2.0.9
       env:
       - name: CID
         value: a-one
@@ -24,14 +17,7 @@ spec:
       - name: common-dir
         mountPath: /tmp
     - name: a-two
-      image: mysidlabs/k8s-demo-runner:1.1.0
-      resources:
-        requests:
-          cpu: 75m
-          memory: 100Mi
-        limits:
-          cpu: 150m
-          memory: 150Mi
+      image: mysidlabs/k8s-demo-runner:2.0.9
       env:
       - name: CID
         value: a-two
