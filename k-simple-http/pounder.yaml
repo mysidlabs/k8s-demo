@@ -24,7 +24,7 @@ spec:
       terminationGracePeriodSeconds: 0
       containers:
       - name: pounder
-        image: mysidlabs/simple-http-pounder:latest
+        image: mysidlabs/simple-http-pounder:1.1.1
         imagePullPolicy: IfNotPresent
         command:
         - /tmp/pounder

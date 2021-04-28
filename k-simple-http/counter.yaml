@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: counter
-        image: mysidlabs/simple-http-counter:latest
+        image: mysidlabs/simple-http-counter:1.1.1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8181
