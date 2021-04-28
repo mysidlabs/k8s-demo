@@ -34,11 +34,11 @@ spec:
               fieldPath: spec.nodeName
         resources:
           requests: 
-            cpu: "512m"
-            memory: "512Mi"
+            cpu: "128m"
+            memory: "128Mi"
           limits:
-            cpu: "1024m"
-            memory: "1024Mi"
+            cpu: "256m"
+            memory: "256Mi"
       restartPolicy: Always
       terminationGracePeriodSeconds: 1
   replicas: 1
