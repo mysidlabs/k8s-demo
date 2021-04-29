@@ -89,6 +89,13 @@ while [[ $# -gt 0 ]]; do
             TIME=1
             shift
             ;;
+        @genghis)
+            COUNT=64
+            LOAD=66
+            THREAD=8
+            TIME=10
+            shift
+            ;;
         *)
             echo "Unknown argument: $0 $*"
             exit 1
