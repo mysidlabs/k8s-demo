@@ -1,6 +1,4 @@
 ---
-x-vars:
-  image: &img mysidlabs/k8s-demo-runner:2.0.9
 kind: Pod
 apiVersion: v1
 metadata:
@@ -11,7 +9,7 @@ metadata:
 spec:
   containers:
   - name: a-one
-    image: *img 
+    image: mysidlabs/k8s-demo-runner:2.0.9 
     imagePullPolicy: IfNotPresent
   terminationGracePeriodSeconds: 1
 ...
